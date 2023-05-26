@@ -1,0 +1,121 @@
+.Product{
+    direction: rtl;
+    font-family: 'myArabicFont';
+}
+/* start product */
+.container{
+    width: 80%;
+    margin: auto;
+}
+.title{
+    padding: 20px;
+    margin-top: 50px;
+}
+.title h1{
+    text-align: center;
+    font-size: 40px;
+}
+h1::after{
+    content: "";
+    display: block;
+    width: 110px;
+    height: 2px;
+    background-color: black;
+    right: 46%;
+    position: absolute;
+    margin-top: 10px;
+}
+.search{
+    text-align: center;
+    margin-top: 30px;
+    
+}
+.search input{
+    width: 50%;
+    height: 60px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid tomato;
+    outline: none;
+}
+.search i{
+    position: absolute;
+    top: 27.5%;
+    left: 31%;
+    color: #555;
+}
+.product-contant{
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    
+}
+
+/* start media quireis */
+@media(max-width:1200px){
+    .container{
+        width: 80%;
+    }
+    .title{
+        width: 100%;
+    }
+    h1::after{
+        right: 45.5%;
+    }
+    .search{
+        width: 100%;
+    }
+    .product-contant{
+        flex-direction: column;
+        align-items: center;
+    }
+}
+@media(max-width:992px){
+    .container{
+        width: 80%;
+    }
+    h1::after{
+        right: 45%;
+    }
+    .search{
+        width: 100%;
+    }
+    .product-contant{
+        flex-direction: column;
+        align-items: center;
+    }
+}
+@media(max-width:768px){
+    .container{
+        width: 80%;
+    }
+    h1::after{
+        right: 40%;
+    }
+    .search{
+        width: 100%;
+    }
+    .product-contant{
+        flex-direction: column;
+        align-items: center;
+    }
+}
+@media(max-width:480px){
+    .container{
+        width: 80%;
+    }
+    h1::after{
+        right: 37%;
+    }
+    .search{
+        width: 100%;
+    }
+    input::placeholder{
+        font-size: 14px;
+    }
+    .product-contant{
+        flex-direction: column;
+        align-items: center;
+    }
+}
