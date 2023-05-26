@@ -1,0 +1,40 @@
+.product-info{
+    padding: 15px;
+    border-radius: 10px;
+    
+ }
+ .product-info img{
+     width: 100%;
+     border-top-left-radius: 10px;
+     border-top-right-radius: 10px;
+ }
+ .product-info h2{
+     padding: 10px;
+ }
+ .product-info h5{
+     color: #555;
+     margin-bottom: 20px;
+ }
+ .product-info p {
+     font-weight: 600;
+     margin-bottom: 10px;
+ }
+ 
+ .product-info button{
+     padding: 10px 20px;
+     border: none;
+     cursor: pointer;
+     transition: 0.3s all;
+     border: 1px solid #000;
+     background: transparent;
+     font-size: 20px;
+     border-radius: 10px;
+ }
+ .product-info button:hover{
+     background-color: tomato;
+     color: #fff;
+     border: none;
+ }
+
+ /* start media queries */
+
