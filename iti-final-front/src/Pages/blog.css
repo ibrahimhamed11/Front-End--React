@@ -1,0 +1,68 @@
+.Blog{
+    direction: rtl;
+    font-family: 'myArabicFont';
+}
+
+/* start Blogs */
+.container{
+    width: 80%;
+    margin: auto;
+}
+.title-blog{
+    padding: 20px;
+    margin-top: 50px;
+}
+.title-blog h1{
+    text-align: center;
+    font-size: 40px;
+}
+.title-blog h1::after{
+    content: "";
+    display: block;
+    width: 125px;
+    height: 2px;
+    background-color: black;
+    right: 46%;
+    position: absolute;
+    margin-top: 10px;
+}
+.blog-contant{
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;    
+}
+
+/* start media quieres */
+@media(max-width:1200px){
+    .container{
+        width: 80%;
+    }
+    .title-blog{
+        width: 100%;
+    }
+    .title-blog h1::after{
+        right: 45%;
+    }
+    .blog-contant{
+        flex-direction: column;
+        align-items: center;
+    }
+}
+@media(max-width:992px){
+   
+    .title-blog h1::after{
+        right: 44%;
+    }
+
+}
+@media(max-width:768px){
+    .title-blog h1::after{
+        right: 42%;
+    }
+}
+@media(max-width:480px){
+    .title-blog h1::after{
+        right: 37%;
+    }
+}
