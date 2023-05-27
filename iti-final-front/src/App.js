@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import "./App.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
@@ -25,10 +26,9 @@ function App() {
         <Route path="blog" element={<Blog/>} />
         <Route path="register" element={<Register/>} />
         <Route path="login" element={<Login/>} />
-        
       </Routes>
     </>
+
   );
 }
-
 export default App;

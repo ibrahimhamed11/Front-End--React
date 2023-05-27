@@ -3,8 +3,10 @@ import Header from '../Components/header/Hero'
 
 export default function Main() {
   return (
+ 
     <>
       <Header/>
     </>
+
   )
 }
