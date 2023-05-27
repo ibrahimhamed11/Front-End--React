@@ -1,7 +1,5 @@
 .join{
     background-color: #A96F90;
-    direction: rtl;
-    font-family: 'myArabicFont';
     height: 100vh;
 }
 .container{
@@ -22,8 +20,6 @@
 }
 .join-contant{
     display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
 
 /* start media quary */
@@ -39,13 +35,6 @@
     .join-contant{
         flex-direction: column;
        
-    }
-}
-@media(max-width:769px){
-    .join-contant{
-        width: 100%;
-        flex-direction: column;
-        flex-wrap: wrap;
     }
 }
 
