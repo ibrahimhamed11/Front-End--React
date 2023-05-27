@@ -1,28 +1,33 @@
-<<<<<<< HEAD
-=======
-import logo from './logo.svg';
-import './App.css';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import Products from './Pages/Products';
+import "./App.css";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import { Route, Routes } from "react-router-dom";
+import Navbar from "../src/Components/Navbar/Navbar";
+import Main from './Pages/Main';
+import Products from "./Pages/Products";
+import About from './Pages/About'
+import Blog from './Pages/Blog';
+import Register from './Pages/Register'
+import Login from './Pages/login'
 
 
->>>>>>> 62d17d824e50c1d00569d56bd837c21e4d29817f
 
-import Navbar from '../src/Components/Navbar/Navbar'
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 
 function App() {
   return (
-<<<<<<< HEAD
-  <>
-  <Navbar/>
-
-  </>
-=======
-    <div>
-      <Products/>
-    </div>
->>>>>>> 62d17d824e50c1d00569d56bd837c21e4d29817f
+    <>
+      <Navbar />
+      <Routes>
+        <Route path="home" element={<Main/>}/>
+        <Route path="products" element={<Products/>} />
+        <Route path="about" element={<About/>} />
+        <Route path="blog" element={<Blog/>} />
+        <Route path="register" element={<Register/>} />
+        <Route path="login" element={<Login/>} />
+        
+      </Routes>
+    </>
   );
 }
 

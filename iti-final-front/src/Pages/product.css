@@ -15,7 +15,7 @@
     text-align: center;
     font-size: 40px;
 }
-h1::after{
+/* h1::after{
     content: "";
     display: block;
     width: 110px;
@@ -24,7 +24,7 @@ h1::after{
     right: 46%;
     position: absolute;
     margin-top: 10px;
-}
+} */
 .search{
     text-align: center;
     margin-top: 30px;
