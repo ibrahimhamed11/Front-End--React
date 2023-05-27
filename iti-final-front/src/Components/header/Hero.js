@@ -9,7 +9,8 @@ export default function Header() {
       <section className='hero'>
           <div className='container'>
             <h1>أهلاً بكِ في موقعنا</h1>
-            <p>نفدم لكِ خدمات لمتابعة صحة و نمو طفلك, تابعينا و إنضمي إلينا و إضمني صحة طقلك</p>
+            <p>نقدم لكِ خدمات لمتابعة صحة و نمو طفلك.
+               <br className='newLine'/>تابعينا و إنضمي إلينا و إضمني صحة طفلك.</p>
             <NavLink to='register' className='btn' >سجلي معنا</NavLink>
           </div>
       </section>

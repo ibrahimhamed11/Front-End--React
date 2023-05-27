@@ -21,13 +21,18 @@
    
 }
 
+.newLine {
+    display: none;
+}
+
 .hero p {
     color: #d0c4c4;
     font-size: 20px;
+    font-weight: 500;
 }
 
 .hero .btn {
-    width: 15%;
+    width: fit-content;
     padding: 10px 20px;
     border-radius: 10px;
     color: #000;
@@ -41,3 +46,30 @@
     color: #FFF;
     background-color: #8c5c78;
 }
+
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 992px) {
+    .hero .container{
+        height: 100%;
+        padding: 10px;
+        align-items: center;
+    }
+
+    .hero h1 {
+        font-size: 40px;
+        font-weight: 700;
+        margin-bottom: 40px;
+    }
+
+    .hero p {
+        font-size: 16px;
+        margin-bottom: 40px;
+        text-align: center;
+    }
+
+    .newLine {
+        display: block;
+    }
+}
+
