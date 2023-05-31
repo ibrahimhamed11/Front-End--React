@@ -1,0 +1,97 @@
+.form-container{
+    padding: 20px;
+    text-align: center;
+}
+.sign-greeting{
+    margin-bottom: 25px;
+}
+.sign-greeting h2{
+    line-height: 3;
+}
+
+.sign-form{
+    max-width: 60%;
+    max-height: 100%;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);  
+
+}
+.sign-form h2{
+    padding: 20px;
+
+}
+.sign-form  p{
+    color: #a9a9a9;
+}
+.sign-form form{
+    padding: 20px;
+
+}
+.sign-form form input{
+    border-radius: 10px;
+    padding: 10px;
+    outline: none;
+    border: 1px solid #a9a9a9;
+    width: 300px;
+}
+.btn-signin{
+    background: none;
+    width: 150px;
+    height: 60px;
+    border: 1px solid #a9a9a9;
+    transition: 0.3s all;
+    border-radius: 10px;
+
+}
+.btn-signin:hover{
+    background: #4681f4;
+    color: #fff;
+}
+
+/* start media */
+@media(max-width:1200px){
+    .sign-form{
+        max-width: 50%;
+    }
+    .sign-form form input{
+        width: 100%;
+    }
+    .btn-signin{
+        width: 100%;
+    }
+}
+@media(max-width:992px){
+    .sign-form{
+        max-width: 60%;
+    }
+    .sign-form form input{
+        width: 100%;
+    }
+    .btn-signin{
+        width: 100%;
+    }
+}
+@media(max-width:768px){
+    .sign-form{
+        max-width: 80%;
+    }
+    .sign-form form input{
+        width: 100%;
+    }
+    .btn-signin{
+        width: 100%;
+    }
+}
+@media(max-width:450px){
+    .sign-form{
+        max-width: 100%;
+    }
+    .sign-form form input{
+        width: 100%;
+    }
+    .btn-signin{
+        width: 100%;
+    }
+}
+

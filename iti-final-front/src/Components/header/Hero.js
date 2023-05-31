@@ -10,7 +10,7 @@ export default function Header() {
           <div className='container'>
             <h1>أهلاً بكِ في موقعنا</h1>
             <p>نقدم لكِ خدمات لمتابعة صحة و نمو طفلك.
-               <br className='newLine'/>تابعينا و إنضمي إلينا و إضمني صحة طفلك.</p>
+               <span className='newLine'/>تابعينا و إنضمي إلينا و إضمني صحة طفلك.</p>
             <NavLink to='register' className='btn' >سجلي معنا</NavLink>
           </div>
       </section>

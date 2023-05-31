@@ -20,9 +20,10 @@ export default function Navbar() {
         </NavLink>
         <nav ref={navRef}>
           <NavLink to='home' className="links">الرئيسية</NavLink>
+          <NavLink to='profile' className="links">صفحتك</NavLink>
           <NavLink to='products' className="links">تسوقي</NavLink>
           <NavLink to='about' className="links">عنا</NavLink>
-          <NavLink to='blog' className="links">المدونه</NavLink>
+          <NavLink to='blog' className="links">مجتماعنا</NavLink>
           <NavLink to='register' className="links register-btn">التسجيل</NavLink>
           <NavLink to='login' className="links login-btn"> دخول</NavLink>
           <button className="nav-btn nav-btn-close" onClick={showNavbar}>

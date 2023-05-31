@@ -13,6 +13,7 @@ import Login from './Pages/login'
 
 
 
+
 function App() {
   return (
     <>
@@ -25,6 +26,7 @@ function App() {
         <Route path="register" element={<Register/>} />
         <Route path="login" element={<Login/>} />
       </Routes>
+      
     </>
 
   );

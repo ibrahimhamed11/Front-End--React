@@ -6,7 +6,7 @@ import './product.css';
 function Products() {
   return (
     <div className ="container">
-        <div className ="title">
+        <div className ="title-product">
             <h1>المتجر</h1>
         </div>
         <div className="search">

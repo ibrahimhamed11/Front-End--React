@@ -49,7 +49,7 @@
 
 
 /* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 992px) {
+@media(max-width: 992px) {
     .hero .container{
         height: 100%;
         padding: 10px;
@@ -65,11 +65,12 @@
     .hero p {
         font-size: 16px;
         margin-bottom: 40px;
-        text-align: center;
+        text-align: start;
     }
 
     .newLine {
         display: block;
+        margin: 15px 0px;
     }
 }
 
