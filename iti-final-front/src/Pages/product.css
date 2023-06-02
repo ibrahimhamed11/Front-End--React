@@ -19,7 +19,6 @@
 
 
  .title-product h1::after{
-
     content: "";
     display: block;
     width: 110px;
@@ -48,11 +47,24 @@
     left: 31%;
     color: #555;
 }
-.product-contant{
-    margin-top: 30px;
+.card-info{
     display: flex;
     justify-content: space-between;
-    gap: 10px;    
+    flex-wrap: wrap;
+    margin: 20px 0px;
+}
+.bar{
+text-align: center;
+}
+.bar .btn{
+    border: 1px solid #ffa500;
+    font-size: 18px;
+    transition: 0.3s all;
+    letter-spacing: 3px;
+}
+.bar .btn:hover{
+    background-color: #ff6347;
+    color: #fff;
 }
 
 /* start media quireis */
@@ -66,10 +78,10 @@
     .title-product h1::after{
         right: 45.5%;
     }
-    .search{
+    .search input{
         width: 100%;
     }
-    .product-contant{
+    .card-info{
         flex-direction: column;
         align-items: center;
     }
@@ -81,12 +93,13 @@
     .title-product h1::after{
         right: 45%;
     }
-    .search{
+    .search input{
         width: 100%;
     }
-    .product-contant{
+    .card-info{
         flex-direction: column;
-        align-items: center;
+        
+        width: 100%;
     }
 }
 @media(max-width:768px){
@@ -96,12 +109,13 @@
     .title-product h1::after{
         right: 40%;
     }
-    .search{
+    .search input{
         width: 100%;
     }
-    .product-contant{
+    .card-info{
         flex-direction: column;
         align-items: center;
+        width: 100%;
     }
 }
 @media(max-width:480px){
@@ -111,14 +125,15 @@
     .title-product h1::after{
         right: 37%;
     }
-    .search{
+    .search input{
         width: 100%;
     }
     input::placeholder{
         font-size: 14px;
     }
-    .product-contant{
+    .card-info{
         flex-direction: column;
         align-items: center;
+        width: 100%;
     }
 }

@@ -7,8 +7,12 @@ import Main from './Pages/Main';
 import Products from "./Pages/Products";
 import About from './Pages/About'
 import Blog from './Pages/Blog';
-import Register from './Pages/Register'
-import Login from './Pages/login'
+import Register from './Pages/Register';
+import Login from './Pages/login';
+import ProfileInfo from "./Components/Profile/ProfileInfo";
+
+
+
 
 
 
@@ -25,8 +29,10 @@ function App() {
         <Route path="blog" element={<Blog/>} />
         <Route path="register" element={<Register/>} />
         <Route path="login" element={<Login/>} />
+        <Route path="profile" element={<ProfileInfo/>}/>
       </Routes>
-      
+    
+    
     </>
 
   );
