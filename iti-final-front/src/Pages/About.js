@@ -1,5 +1,5 @@
 import React from 'react';
-import AboutImage from  '../images/main/a-mom-and-dad-parent-kissing-their-young-baby-1024x684.jpg';
+import AboutImage from  '../images/main/family.jpg';
 import './about.css';
 
 

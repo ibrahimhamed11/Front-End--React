@@ -1,7 +1,7 @@
 
 import "./App.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Navbar from "../src/Components/Navbar/Navbar";
 import Main from './Pages/Main';
 import Products from "./Pages/Products";
@@ -10,6 +10,7 @@ import Blog from './Pages/Blog';
 import Register from './Pages/Register';
 import Login from './Pages/login';
 import ProfileInfo from "./Components/Profile/ProfileInfo";
+import Footer from './Components/Footer/Footer'
 
 
 
@@ -30,7 +31,9 @@ function App() {
         <Route path="register" element={<Register/>} />
         <Route path="login" element={<Login/>} />
         <Route path="profile" element={<ProfileInfo/>}/>
+        <Route path="*"  element={<Navigate to="home" replace={true}/>}/>
       </Routes>
+      <Footer/>
     
     
     </>

@@ -11,7 +11,7 @@ export default function Header() {
             <h1>أهلاً بكِ في موقعنا</h1>
             <p>نقدم لكِ خدمات لمتابعة صحة و نمو طفلك.
                <span className='newLine'/>تابعينا و إنضمي إلينا و إضمني صحة طفلك.</p>
-            <NavLink to='register' className='btn' >سجلي معنا</NavLink>
+            <NavLink to='/register' className='btn' >سجلي معنا</NavLink>
           </div>
       </section>
     </>
