@@ -6,7 +6,7 @@
     margin-bottom: 25px;
 }
 .sign-greeting h2{
-    line-height: 3;
+    line-height: 2;
 }
 
 .sign-form{
@@ -18,15 +18,15 @@
 
 }
 .sign-form h2{
-    padding: 20px;
+    padding: 15px;
+}
+.sign-form p{
+    margin-bottom: 0px;
+}
 
-}
-.sign-form  p{
-    color: #a9a9a9;
-}
+
 .sign-form form{
-    padding: 20px;
-
+    padding: 5px;
 }
 .sign-form form input{
     border-radius: 10px;
@@ -42,11 +42,20 @@
     border: 1px solid #a9a9a9;
     transition: 0.3s all;
     border-radius: 10px;
+    margin: 10px 0px;
 
 }
 .btn-signin:hover{
-    background: #4681f4;
+    background: #8c5c78;
     color: #fff;
+}
+.sign-form .error-msg {
+    color: red;
+    font-size: 14px;
+    text-align: right;
+    margin-bottom: 20px;
+    display: block;
+    align-self:flex-start;
 }
 
 /* start media */

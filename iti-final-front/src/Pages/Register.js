@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import TheImage from '../images/regsteration-image/kelly-sikkema-Z4GKcFAGck4-unsplash.jpg'
 
 export default function Register() {
   const [isLoading, setIsLoading] = useState();
@@ -65,9 +66,14 @@ export default function Register() {
   });
 
   return (
-    <div className="container">
-      <div className="form-container sign">
-        <div className="sign-form">
+    <div className="register w-100">
+      <div className="container">
+      <div className="form-container  ">
+        <div className="d-flex ">
+          <div className="register-img">
+          <img src={TheImage}/>
+          </div>
+        <div className="signup-form">
           <h2>أنشاء حساب جديد</h2>
           <p>الرجاء أنشاء حساب حتي تتمكن من استخدام الموقع</p>
           <form onSubmit={formik.handleSubmit}>
@@ -170,7 +176,11 @@ export default function Register() {
             </div>
           </form>
         </div>
+        </div>
+       
       </div>
     </div>
+    </div>
+    
   );
 }

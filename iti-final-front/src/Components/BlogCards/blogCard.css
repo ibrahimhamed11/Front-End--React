@@ -1,9 +1,10 @@
 .blog-info {
-  padding: 10px;
+  padding: 18px;
   border-radius: 10px;
   width: 30%;
-  border: 1px solid;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  box-shadow: 7px -2px 12px 9px rgba(0,0,0,0.05);
+
 }
 .blog-info img {
   width: 100%;
@@ -34,7 +35,7 @@
   padding: 10px 20px;
   border: none;
   cursor: pointer;
-  transition: 0.3s all;
+  transition: 0.5s all;
   border: 1px solid #000;
   background: transparent;
   font-size: 20px;
@@ -43,7 +44,7 @@
   color: #000;
 }
 .blog-info a:hover {
-  background-color: tomato;
+  background-color: #ff6347;
   color: #fff;
-  border: none;
+  border: 1px solid #ff6347;
 }

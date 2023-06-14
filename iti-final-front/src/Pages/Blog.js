@@ -3,7 +3,7 @@ import BlogCards from '../Components/BlogCards/BlogCards';
 import './blog.css';
 import axios from 'axios';
 import { useEffect } from 'react';
-const pageSize = 6;
+const pageSize = 12;
 
 function Blog() {
   const [blogs,setBlogs]=useState([]);
@@ -38,7 +38,7 @@ function Blog() {
     <div className="Blog">
         <div className="container">
             <div className="title-blog">
-                <h1>مجتماعنا</h1>
+                <h1>مجتمعنا</h1>
             </div>
             <div className="blog-contant">
               <div className='card-info'>
