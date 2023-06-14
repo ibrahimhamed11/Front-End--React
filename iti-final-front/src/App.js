@@ -16,6 +16,8 @@ import ProfileInfo from "./Components/Profile/ProfileInfo";
 import SellerProducts from "./Components/SellerProducts/SellerProducts";
 import { logIn } from "./Redux/Slices/UserSlice";
 import EditInfo from "./Components/EditInfo/EditInfo";
+import ShoppingCart from "./Pages/ShoppingCart";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -41,6 +43,7 @@ function App() {
           <Route path="products" element={<SellerProducts />} />
         </Route>
         <Route path="products/:productId" element={<ProductDetails />} />
+        <Route path="cart" element={<ShoppingCart />} />
 
         {/* <Route path="*"  element={<Navigate to="404" replace={true}/>}/> */}
       </Routes>

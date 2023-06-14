@@ -11,7 +11,7 @@ export default function Navbar() {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.UserSlice.isLoggedIn);
   const user = useSelector((state) => state.UserSlice.user);
-  console.log(user, isLoggedIn);
+  console.log(user);
 
   const navRef = useRef();
   const showNavbar = () => {
@@ -51,11 +51,15 @@ export default function Navbar() {
             عنا
           </NavLink>
       
-
+          <NavLink to="cart" className="links register-btn">
+                عربة التسوق
+              </NavLink>
           {isLoggedIn ? (
             <>
               <span className="profile"> {user.name}</span>
+           
               <span onClick={() => dispatch(logOut())} className="logOut">
+            
                 Log out
               </span>
             </>
