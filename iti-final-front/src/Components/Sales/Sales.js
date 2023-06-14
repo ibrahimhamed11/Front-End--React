@@ -4,8 +4,11 @@ import TestImage from "../../images/main/baby.png";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { useSelector } from "react-redux";
+
 
 export default function Sales() {
+    const {products} = useSelector(state => state.SellerSlice)
   return (
     <Container className="my-5 py-">
       <h1 className="text-center mb-5"> الاعلى مبيعاً</h1>

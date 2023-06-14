@@ -1,132 +1,173 @@
 import React, { useState } from "react";
-import { FaSpinner } from "react-icons/fa";
 import "./register.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 export default function Register() {
-  const [user, setUser] = useState({
-    name: "",
-    email: "",
-    username: "",
-    phone: 0,
-    password: "",
-    address: "",
-    age: 0,
-    role: "",
-  });
-
   const [isLoading, setIsLoading] = useState();
   const navigate = useNavigate();
 
-  function getUserData(e) {
-    let myUser = { ...user };
-    myUser[e.target.name] = e.target.value;
-    setUser(myUser);
-  }
+  const Schema = Yup.object().shape({
+    name: Yup.string().min(6, "الاسم غير صالح").required("مطلوب"),
+    email: Yup.string()
+      .email("الايميل غير صالح")
+      .required("من فضلك ادخل ايميل صحيح"),
+    username: Yup.string().min(4, "اسم المستخدم قصير"),
+    phone: Yup.number().min(11, "رقم الهاتف غير صالح").required(),
+    password: Yup.string()
+      .min(8, "الرقم السري لابد ان يكون اكبر من 8 حرف ")
+      .max(20, "الرقم السري لا يمكن ان يتجاوز 20 حرف")
+      .required("مطلوب"),
+    passwordConfirm: Yup.string()
+      .min(8, "الرقم السري لابد ان يكون اكبر من 8 حرف ")
+      .max(20, "الرقم السري لا يمكن ان يتجاوز 20 حرف")
+      .required("مطلوب")
+      .oneOf([Yup.ref("password"), null], "الرقم السري غير متطابق"),
+    address: Yup.string().min(10, "العنوان غير صالح").required("مطلوب"),
+    age: Yup.number().moreThan(18, "العمر يجب ان يكون اكبر من 18"),
+    role: "",
+  });
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    setIsLoading(true);
-    console.log(user)
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      email: "",
+      username: "",
+      phone: 0,
+      password: "",
+      passwordConfirm:'',
+      address: "",
+      age: 0,
+      role: "",
+    },
+    validationSchema: Schema,
+    onSubmit: async (user) => {
+      setIsLoading(true);
+      let response;
+      try {
+        response = await axios.post("http://localhost:4000/user/register", {
+          user,
+        });
+        console.log(response);
+        if (
+          response.data.message === "User created successfully"
+        ) {
+          setIsLoading(false);
+          navigate("/login");
+        }
+      } catch (error) {
+        console.log(error);
+        setIsLoading(false);
+      }
+    },
+  });
 
-    try{
-      let response = await axios.post("http://localhost:4000/user/register", { user });
-      console.log(response);
-    }catch(error) {
-      console.log(error)
-    }
-  
-
-    // if (response.status === 200) {
-    //   setIsLoading(false);
-    //   navigate('/login')
-    // } else {
-    //   setIsLoading(false);
-    // }
-  };
   return (
     <div className="container">
       <div className="form-container sign">
         <div className="sign-form">
           <h2>أنشاء حساب جديد</h2>
           <p>الرجاء أنشاء حساب حتي تتمكن من استخدام الموقع</p>
-          <form onSubmit={handleSubmit}>
-            <input
-              type="text"
-              nam
-              onChange={getUserData}
-              name="name"
-              placeholder="الاسم بالكامل"
-            />
-            <br />
-            <br />
-            <input
-              type="email"
-              na
-              onChange={getUserData}
-              name="email"
-              placeholder="أضف حسابك"
-            />
-            <br />
-            <br />
-            <input
-              type="text"
-              na
-              onChange={getUserData}
-              name="username"
-              placeholder="ااسم مستخدم"
-            />
-            <br />
-            <br />
-            <input
-              type="number"
-              n
-              onChange={getUserData}
-              name="phone"
-              placeholder="الهاتف"
-            />
-            <br />
-            <br />
-            <input
-              type="password"
-              onChange={getUserData}
-              name="password"
-              placeholder="كلمة المرور"
-            />
-            <br />
-            <br />
-            <input type="password" placeholder="تأكيد كلمة المرور" />
-            <br />
-            <br />
-            <input
-              type="text"
-              nam
-              onChange={getUserData}
-              name="address"
-              placeholder="ادخل عنوان صالح"
-            />
-            <br />
-            <br />
-            <input
-              type="number"
-              n
-              onChange={getUserData}
-              name="age"
-              placeholder="ادخل عمرك"
-            />
-            <br />
-            <br />
-            <select className="role" name="role">
-              <option value="mother">أم</option>
-              <option value="pregnant">حامل</option>
-              <option value="seller">تاجر</option>
-            </select>
-            <br />
-            <br />
-            <button className="btn-signin">
-              {isLoading ? <FaSpinner /> : "إنشاء حساب"}
-            </button>
+          <form onSubmit={formik.handleSubmit}>
+            <div className="form-container">
+              <div className="input-container">
+                <input
+                  type="text"
+                  onChange={formik.handleChange}
+                  name="name"
+                  placeholder="الاسم بالكامل"
+                />
+                <small className="error-msg">{formik.errors.name}</small>
+              </div>
+              <div className="input-container">
+                <input
+                  type="email"
+                  onChange={formik.handleChange}
+                  name="email"
+                  placeholder="أضف حسابك"
+                />
+                <small className="error-msg">{formik.errors.email}</small>
+              </div>
+              <div className="input-container">
+                <input
+                  type="text"
+                  onChange={formik.handleChange}
+                  name="username"
+                  placeholder="اسم مستخدم"
+                />
+                <small className="error-msg">{formik.errors.username}</small>
+              </div>
+              <div className="input-container">
+                <input
+                  type="number"
+                  onChange={formik.handleChange}
+                  name="phone"
+                  placeholder="الهاتف"
+                />
+                <small className="error-msg">{formik.errors.phone}</small>
+              </div>
+              <div className="input-container">
+                <input
+                  type="password"
+                  onChange={formik.handleChange}
+                  name="password"
+                  placeholder="كلمة المرور"
+                  id="password"
+                />
+                <small className="error-msg">{formik.errors.password}</small>
+              </div>
+              <div className="input-container">
+                <input
+                  type="password"
+                  placeholder="تأكيد كلمة المرور"
+                  name="passwordConfirm"
+                  onChange={formik.handleChange}
+                />
+                <small className="error-msg">
+                  {formik.errors.passwordConfirm}
+                </small>
+              </div>
+              <div className="input-container">
+                <input
+                  type="text"
+                  onChange={formik.handleChange}
+                  name="address"
+                  placeholder="ادخل عنوان صالح"
+                />
+                <small className="error-msg">{formik.errors.address}</small>
+              </div>
+              <div className="input-container">
+                <input
+                  type="number"
+                  onChange={formik.handleChange}
+                  name="age"
+                  placeholder="ادخل عمرك"
+                />
+                <small className="error-msg">{formik.errors.age}</small>
+              </div>
+              <div className="input-container">
+                <select
+                  className="role"
+                  name="role"
+                  onChange={formik.handleChange}
+                >
+                  <option value="mother">أم</option>
+                  <option value="pregnant">حامل</option>
+                  <option value="seller">تاجر</option>
+                </select>
+              </div>
+              <div className="input-container">
+                <button className="btn-signin" type="submit">
+                  {isLoading ? (
+                    <i className="fa-solid fa-spinner fa-spin-pulse"></i>
+                  ) : (
+                    "إنشاء حساب"
+                  )}
+                </button>
+              </div>
+            </div>
           </form>
         </div>
       </div>

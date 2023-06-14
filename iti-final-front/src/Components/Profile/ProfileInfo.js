@@ -1,81 +1,67 @@
-import React from 'react';
+import React from "react";
+import { useSelector } from "react-redux";
 
 function ProfileInfo() {
+  const user = useSelector(state => state.UserSlice.user)
+  console.log(user)
   return (
-    <div className='profile-info '>
-        <div className="container py-5">
-  <div className="row">
-    <div className="col-lg-4 ">
-      <div className="card mb-4 ">
-        <div className="card-body text-center shadow  bg-white rounded">
-          <img
-            src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
-            alt="avatar"
-            className="rounded-circle img-fluid"
-            style={{ width: 100 }}
-          />
-          <h5 className="my-3">John Smith</h5>
-          <p className="text-muted mb-1">Full Stack Developer</p>
-          <p className="text-muted mb-4">Bay Area, San Francisco, CA</p>
-          <div className="d-flex justify-content-center mb-2"></div>
-        </div>
+    <div className="col-lg-9">
+    <div className="profile-info ">
+      <div className="container">
+          <div className="card mb-4">
+            <div className="card-body shadow  bg-white rounded">
+              <div className="row">
+                <div className="col-sm-3">
+                  <p className="mb-0">الاسم :</p>
+                </div>
+                <div className="col-sm-9">
+                  <p className="text-muted mb-0">{user.name}</p>
+                </div>
+              </div>
+              <hr />
+              <div className="row">
+                <div className="col-sm-3">
+                  <p className="mb-0">الايميل : </p>
+                </div>
+                <div className="col-sm-9">
+                  <p className="text-muted mb-0">{user.email}</p>
+                </div>
+              </div>
+              <hr />
+              <div className="row">
+                <div className="col-sm-3">
+                  <p className="mb-0">الهاتف :</p>
+                </div>
+                <div className="col-sm-9">
+                  <p className="text-muted mb-0">
+                    0{user.phone}
+                  </p>
+                </div>
+              </div>
+              <hr />
+              <div className="row">
+                <div className="col-sm-3">
+                  <p className="mb-0">العنوان :</p>
+                </div>
+                <div className="col-sm-9">
+                  <p className="text-muted mb-0">{user.address}</p>
+                </div>
+              </div>
+              <hr/>
+              <div className="row">
+                <div className="col-sm-3">
+                  <p className="mb-0">العمر :</p>
+                </div>
+                <div className="col-sm-9">
+                  <p className="text-muted mb-0">{user.age}</p>
+                </div>
+              </div>
+            </div>
+          </div>
       </div>
     </div>
-    <div className="col-lg-8">
-      <div className="card mb-4">
-        <div className="card-body shadow  bg-white rounded">
-          <div className="row">
-            <div className="col-sm-3">
-              <p className="mb-0">Full Name</p>
-            </div>
-            <div className="col-sm-9">
-              <p className="text-muted mb-0">Johnatan Smith</p>
-            </div>
-          </div>
-          <hr />
-          <div className="row">
-            <div className="col-sm-3">
-              <p className="mb-0">Email</p>
-            </div>
-            <div className="col-sm-9">
-              <p className="text-muted mb-0">example@example.com</p>
-            </div>
-          </div>
-          <hr />
-          <div className="row">
-            <div className="col-sm-3">
-              <p className="mb-0">Phone</p>
-            </div>
-            <div className="col-sm-9">
-              <p className="text-muted mb-0">(097) 234-5678</p>
-            </div>
-          </div>
-          <hr />
-          <div className="row">
-            <div className="col-sm-3">
-              <p className="mb-0">Mobile</p>
-            </div>
-            <div className="col-sm-9">
-              <p className="text-muted mb-0">(098) 765-4321</p>
-            </div>
-          </div>
-          <hr />
-          <div className="row">
-            <div className="col-sm-3">
-              <p className="mb-0">Address</p>
-            </div>
-            <div className="col-sm-9">
-              <p className="text-muted mb-0">Bay Area, San Francisco, CA</p>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
-</div>
-
-    </div>
-  )
+  );
 }
 
 export default ProfileInfo;

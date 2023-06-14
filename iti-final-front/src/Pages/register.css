@@ -5,6 +5,33 @@
     padding: 10px;
     outline: none;
 }
+
+.sign-form form {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.sign-form .form-container{ 
+    width: 50%;
+    margin: 0 auto;
+}
+
+.sign-form .input-container {
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    
+}
+
+.sign-form .error-msg {
+    color: red;
+    font-size: 14px;
+    text-align: right;
+    margin-bottom: 20px;
+    display: block;
+    align-self:flex-start;
+}
+
 /* start media */
 @media(max-width:1200px){
     .sign-form select{

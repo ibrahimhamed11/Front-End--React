@@ -56,7 +56,8 @@ nav {
     opacity: 0;
 }
 
-.register-btn {
+.register-btn,
+.logOut {
     font-weight: 500;
     font-size: 1rem;
     line-height: 28px;
@@ -87,6 +88,12 @@ nav {
     background-color: #f3f77a;
     color: #000;
 }
+
+.profile {
+    cursor: pointer;
+    color: #FFF;
+}
+
 
 @media only screen and (max-width: 1024px) {
     header .nav-btn {

@@ -1,26 +1,25 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import Container from 'react-bootstrap/Container';
+import './productCard.css'
 
-
-export default function Sales(props) {
+export default function Sales({item}) {
   return (
-    <Container>
+    <>
       <Card style={{ width: "18rem" }}>
-        <Card.Img variant="top" src={props.image} />
+        <Card.Img variant="top" src={item.thumbnail}  className="product-image"/>
         <Card.Body>
-          <Card.Title>اسم المنتج</Card.Title>
-          <Card.Text>
-            هذا نص وهمي سيتم استبداله بوصف المنتج. قمت فقط باضافته لغرض
-            الاختبار.
+          <Card.Title className="product-title">{item.title}</Card.Title>
+          <Card.Text className="product-description">
+          {item.description}
           </Card.Text>
           <Card.Text>
-            200EGP
+          {item.price}$
           </Card.Text>
-          <Button variant="primary">اضف الى العربه</Button>
+          <Button variant="warning" className="me-5">تعديل</Button>
+          <Button variant="danger" className="me-5">حذف</Button>
         </Card.Body>
       </Card>
-    </Container>
+    </>
   );
 }

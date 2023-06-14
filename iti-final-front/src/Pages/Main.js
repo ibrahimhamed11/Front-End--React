@@ -7,13 +7,13 @@ import Achievements from "../Components/Achievements/Achievements";
 import Testimonial from "../Components/Testimonial/Testimonial";
 
 
-export default function Main() {
+export default function Main({userData}) {
   return (
     <>
-      <Header />
+      <Header userData={userData} />
       <Services />
        <About/> 
-      <Sales />    
+      {/* <Sales />     */}
       <Achievements/>
       <Testimonial/>
 
