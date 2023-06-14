@@ -5,6 +5,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useDispatch,useSelector } from "react-redux";
 import  { logInUser } from "../Redux/Slices/UserSlice";
+import TheImage from '../images/regsteration-image/jonathan-borba-RWgE9_lKj_Y-unsplash.jpg'
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -35,9 +36,14 @@ export default function Login() {
   return (
     <div className="container">
       <div className="form-container">
-        <div className="sign-greeting">
+      <div className="sign-greeting">
           <h2>مرحبا بعودتك</h2>
-        </div>
+        </div>  
+        <div className="d-flex  justify-content-center">
+          <div className="sign-image">
+            <img src={TheImage} />
+          </div>
+
         <div className="sign-form">
           <h2>تسجيل الدخول</h2>
           <p>الرجاء تسجيل الدخول حتى تتكمن من استخدام الموقع</p>
@@ -67,6 +73,8 @@ export default function Login() {
             </div>
           </form>
         </div>
+        </div>
+        
       </div>
     </div>
   );
