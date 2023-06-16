@@ -12,7 +12,7 @@ function ProductDetails() {
   const thumbRef = useRef();
   const [mainImage, setMainImage] = useState(item.image);
   const dispatch = useDispatch();
-  const {_id} = useSelector(state => state.UserSlice.user)
+  const {_id} = useSelector(state => state.UserSlice.user) || "";
 
 
   function handleImage(index) {

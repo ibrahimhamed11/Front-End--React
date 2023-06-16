@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 function ProfileInfo() {
   const user = useSelector(state => state.UserSlice.user)
-  console.log(user)
+
   return (
     <div className="col-lg-9">
     <div className="profile-info ">

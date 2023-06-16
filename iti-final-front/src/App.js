@@ -14,10 +14,12 @@ import { useDispatch, useSelector } from "react-redux";
 import Profile from "./Pages/Profile";
 import ProfileInfo from "./Components/Profile/ProfileInfo";
 import SellerProducts from "./Components/SellerProducts/SellerProducts";
-import { logIn } from "./Redux/Slices/UserSlice";
+// import { logIn } from "./Redux/Slices/UserSlice";
 import EditInfo from "./Components/EditInfo/EditInfo";
 import ShoppingCart from "./Pages/ShoppingCart";
 import { getCartItems } from "./Redux/Slices/ProductSlice";
+import { getUserData } from "./Redux/Slices/UserSlice";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -26,9 +28,9 @@ function App() {
  
 
   useEffect(() => {
-    dispatch(logIn());
+    dispatch(getUserData(userId));
     dispatch(getCartItems(userId))
-  }, [dispatch]);
+  }, [dispatch, userId]);
 
   return (
     <>
