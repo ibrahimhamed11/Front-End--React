@@ -1,40 +1,88 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+// import { Navigate } from "react-router-dom";
 
 
-export const getAllProducts = createAsyncThunk('Product/products',async ()=> {
-    try{
-        let response =await axios.get("http://localhost:4000/products/getAll");
+// const navigate = Navigate();
+export const getAllProducts = createAsyncThunk("Product/products", async () => {
+  try {
+    let response = await axios.get("http://localhost:4000/products/getAll");
     console.log(response.data);
-    return response.data
-    }catch(error) {
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+export const getProductById = createAsyncThunk("Product/getProductById", async (_id) => {
+    try {
+            let response = await axios.get(`http://localhost:4000/products/${_id}`)
+            console.log(response.data)
+            return response.data
+    }catch (error) {
         console.log(error)
     }
 });
 
-const ProductSlice = createSlice({
-   name: "Product",
-   initialState : {
-    products : [],
-    cartItems: [],
-    wishList: [],
-   },
-   reducers : {
-        addToCart : (state,action) => {
-            console.log(action.payload);
-            state.cartItems.push(action.payload)
-        }
-   },
-   extraReducers: {
-        [getAllProducts.pending] : () =>{
-            console.log("pending")
-        },
-        [getAllProducts.fulfilled] : (state,action) => {
-            state.products = action.payload
-            console.log(state.products)
-        },
-   }
+export const addToCart = createAsyncThunk("Product/addTocart", async ({product,user,quantity})=> {
+    try {
+        let response = await axios.post('http://localhost:4000/cart/add',{product,user,quantity})
+        console.log(response);
+    }catch(error) {
+        console.log(error);
+    }
 })
 
-export const {addToCart} = ProductSlice.actions;
+export const getCartItems = createAsyncThunk("Product/getCartItems", async (userId)=> {
+  try {
+    let response = await axios.get(`http://localhost:4000/cart/${userId}`);
+    console.log(response)
+    return response.data
+  }catch(error) {
+    console.log(error);
+  }
+})
+
+export const deleteCartItem = createAsyncThunk("Product/detelte",async (id)=> {
+  let response= await axios.delete(`http://localhost:4000/cart/${id}`);
+  console.log(response)
+})
+
+const ProductSlice = createSlice({
+  name: "Product",
+  initialState: {
+    products: [],
+    cartItem: {},
+    cartItems: [],
+    wishList: [],
+    product: {},
+  },
+
+  reducers: {
+    // addToCart : (state,action) => {
+    //     console.log(action.payload);
+    //     state.cartItem = action.payload;
+    //     console.log()
+    // }
+  },
+  extraReducers: {
+    [getAllProducts.pending]: () => {
+      console.log("pending");
+    },
+    [getAllProducts.fulfilled]: (state, action) => {
+      state.products = action.payload;
+      console.log(state.products);
+    },
+    [getProductById.fulfilled]: (state, action) => {
+      state.product = action.payload
+    },
+    [getCartItems.fulfilled] : (state,action) => {
+      console.log(action.payload)
+      state.cartItems = action.payload;
+      console.log(state.cartItems)
+    }
+  },
+});
+
+// export const {addToCart} = ProductSlice.actions;
 export default ProductSlice.reducer;

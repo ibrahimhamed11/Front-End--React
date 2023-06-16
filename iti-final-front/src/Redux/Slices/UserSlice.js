@@ -49,6 +49,7 @@ const UserSlice = createSlice({
       state.accessToken = action.payload.token;
       state.user = action.payload.user;
       localStorage.setItem("tkn", action.payload.token);
+      localStorage.setItem("id",state.user._id);
     },
 
     [logInUser.rejected]: (state, action) => {

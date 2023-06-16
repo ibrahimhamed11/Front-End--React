@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./login.css";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
@@ -41,7 +41,7 @@ export default function Login() {
         </div>  
         <div className="d-flex  justify-content-center">
           <div className="sign-image">
-            <img src={TheImage} />
+            <img src={TheImage} alt="" />
           </div>
 
         <div className="sign-form">

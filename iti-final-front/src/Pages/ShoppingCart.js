@@ -1,27 +1,28 @@
 import React from "react";
 import "./shoppingCart.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { useEffect } from "react";
+import { deleteCartItem } from "../Redux/Slices/ProductSlice";
 
 export default function ShoppingCart() {
-  const { cartItems } = useSelector((state) => state.ProductSlice);
+  const dispatch = useDispatch();
+  const { cartItems } = useSelector((state) => state.ProductSlice) || [];
   console.log(cartItems);
-  const [total,setTotal] = useState(0)
+  const [total, setTotal] = useState(0);
 
   function cartTotal(cartItems) {
     let items = [...cartItems];
     let total = 0;
     for (let i = 0; i < items.length; i++) {
       total += items[i].price;
-      console.log(total);
     }
     return total;
   }
 
-  useEffect(()=> {
-      setTotal(cartTotal(cartItems))
-  },[cartItems])
+  useEffect(() => {
+    setTotal(cartTotal(cartItems));
+  }, [cartItems]);
   return (
     <>
       <section className="cart">
@@ -72,6 +73,9 @@ export default function ShoppingCart() {
                               className="btn btn-primary btn-sm ms-1 mb-2"
                               data-mdb-toggle="tooltip"
                               title="Remove item"
+                              onClick={() => {
+                                dispatch(deleteCartItem(item._id));
+                              }}
                             >
                               <i className="fas fa-trash"></i>
                             </button>
@@ -167,7 +171,7 @@ export default function ShoppingCart() {
                   <img
                     className="me-2"
                     width="45px"
-                    src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce/includes/gateways/paypal/assets/images/paypal.webp"
+                    src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-100px.png"
                     alt="PayPal acceptance mark"
                   />
                 </div>

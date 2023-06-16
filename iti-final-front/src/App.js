@@ -1,5 +1,5 @@
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Navbar from "../src/Components/Navbar/Navbar";
 import Main from "./Pages/Main";
 import Products from "./Pages/Products";
@@ -10,20 +10,24 @@ import Login from "./Pages/Login";
 import Footer from "./Components/Footer/Footer";
 import { useEffect } from "react";
 import ProductDetails from "./Pages/ProductDetails";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Profile from "./Pages/Profile";
 import ProfileInfo from "./Components/Profile/ProfileInfo";
 import SellerProducts from "./Components/SellerProducts/SellerProducts";
 import { logIn } from "./Redux/Slices/UserSlice";
 import EditInfo from "./Components/EditInfo/EditInfo";
 import ShoppingCart from "./Pages/ShoppingCart";
-
+import { getCartItems } from "./Redux/Slices/ProductSlice";
 
 function App() {
   const dispatch = useDispatch();
+  const { _id } = useSelector((state) => state.ProductSlice.product);
+  const userId = localStorage.getItem('id');
+ 
 
   useEffect(() => {
     dispatch(logIn());
+    dispatch(getCartItems(userId))
   }, [dispatch]);
 
   return (
@@ -33,6 +37,7 @@ function App() {
         <Route path="/" element={<Main />} />
         <Route path="home" element={<Main />} />
         <Route path="products" element={<Products />} />
+        <Route path={_id} element={<ProductDetails />} />
         <Route path="about" element={<About />} />
         <Route path="blog" element={<Blog />} />
         <Route path="register" element={<Register />} />
@@ -42,9 +47,7 @@ function App() {
           <Route path="edit" element={<EditInfo />} />
           <Route path="products" element={<SellerProducts />} />
         </Route>
-        <Route path="products/:productId" element={<ProductDetails />} />
         <Route path="cart" element={<ShoppingCart />} />
-
         {/* <Route path="*"  element={<Navigate to="404" replace={true}/>}/> */}
       </Routes>
       <Footer />
