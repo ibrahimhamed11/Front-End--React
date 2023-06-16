@@ -46,10 +46,10 @@ export default function Register() {
     validationSchema: Schema,
     onSubmit: async (user) => {
       setIsLoading(true);
-      let response;
-      try {
-        response = await axios.post("http://localhost:4000/user/register", {
-          user,
+      const {name,email,username,phone,password,address,age,role} = user
+       try {
+        let   response = await axios.post("http://localhost:4000/user/register", {
+          name,email,username,phone,password,address,age,role
         });
         console.log(response);
         if (

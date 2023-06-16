@@ -46,6 +46,18 @@ export const deleteCartItem = createAsyncThunk("Product/detelte",async (id)=> {
   console.log(response)
 })
 
+export const updateCartItem = createAsyncThunk("Product/updatCartItem", async ({quantity,itemId}) => {
+  try{
+    console.log(quantity,itemId)
+      let response = await axios.patch(`http://localhost:4000/cart/${itemId}`,{quantity});
+      console.log(response)
+      const userId = localStorage.getItem("id")
+      getCartItems(userId)
+  }catch(error) {
+    console.log(error)
+  }
+})
+
 const ProductSlice = createSlice({
   name: "Product",
   initialState: {
