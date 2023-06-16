@@ -53,7 +53,7 @@ function EditInfo() {
                       name="name"
                       defaultValue={user.name}
                       disabled
-                      className="w-100 rounded"
+                      className="w-100 border border-secondary form-control"
                     />
                   </div>
                 </div>
@@ -67,7 +67,7 @@ function EditInfo() {
                       type="text"
                       name="email"
                       defaultValue={user.email}
-                      className="w-100 rounded"
+                      className="w-100 border border-secondary form-control"
                       onChange={formik.handleChange}
                     />
                     <small  className="text-danger">{formik.errors.email}</small>
@@ -83,7 +83,7 @@ function EditInfo() {
                       type="text"
                       name="phone"
                       defaultValue={user.phone}
-                      className="w-100 rounded "
+                      className="w-100 border border-secondary form-control "
                       onChange={formik.handleChange}
                     />
                     <small  className="text-danger">{formik.errors.phone}</small>
@@ -99,7 +99,7 @@ function EditInfo() {
                       type="text"
                       name="address"
                       defaultValue={user.address}
-                      className="w-100 rounded "
+                      className="w-100 border border-secondary form-control "
                       onChange={formik.handleChange}
                     />
                     <small  className="text-danger">{formik.errors.address}</small>
@@ -114,7 +114,7 @@ function EditInfo() {
                     <input
                       type="password"
                       name="name"
-                      className="w-100 rounded "
+                      className="w-100 border border-secondary form-control"
                       onChange={formik.handleChange}
                     />
                     <small className="text-danger">{formik.errors.password}</small>
@@ -129,7 +129,7 @@ function EditInfo() {
                     <input
                       type="password"
                       name="name"
-                      className="w-100 rounded "
+                      className="w-100 border border-secondary form-control "
                       onChange={formik.handleChange}
                     />
                     <small  className="text-danger">{formik.errors.password}</small>
@@ -144,7 +144,7 @@ function EditInfo() {
                     <input
                       type="password"
                       name="confirmpassword"
-                      className="w-100 rounded "
+                      className="w-100 border border-secondary form-control "
                       onChange={formik.handleChange}
                     />
                     <small  className="text-danger">{formik.errors.confirmpassword}</small>
@@ -152,7 +152,7 @@ function EditInfo() {
                 </div>
                 <hr />
                 <div className="text-center">
-                  <button className="btn btn-primary w-25">حفظ</button>
+                  <button className="btn btn-outline-primary w-100">حفظ</button>
                 </div>
               </form>
             </div>

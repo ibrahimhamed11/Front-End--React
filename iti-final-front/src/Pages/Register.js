@@ -159,6 +159,7 @@ export default function Register() {
                   name="role"
                   onChange={formik.handleChange}
                 >
+                  <option value="">اختاري نوع الحساب </option>
                   <option value="mother">أم</option>
                   <option value="pregnant">حامل</option>
                   <option value="seller">تاجر</option>
