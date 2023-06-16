@@ -37,7 +37,7 @@ export default function Modal() {
     <>
       <button
         type="button"
-        className="btn btn-primary"
+        className="btn btn-outline-warning btn-block text-black"
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
       >
@@ -54,7 +54,7 @@ export default function Modal() {
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <h1 className="modal-title fs-5" id="exampleModalLabel">
+              <h1 className="modal-title fs-5 " id="exampleModalLabel">
                 إضافة منتج
               </h1>
               <button
@@ -73,6 +73,7 @@ export default function Modal() {
                     name="name"
                     placeholder="اسم المنتج"
                     onChange={formik.handleChange}
+                    className="form-control border border-secondary"
                   />
                 </div>
                 <div>
@@ -81,6 +82,7 @@ export default function Modal() {
                     name="description"
                     placeholder="وصف المنتج"
                     onChange={formik.handleChange}
+                    className="form-control border border-secondary"
                   />
                 </div>
                 <div>
@@ -89,6 +91,7 @@ export default function Modal() {
                     name="price"
                     placeholder="السعر"
                     onChange={formik.handleChange}
+                    className="form-control border border-secondary"
                   />
                 </div>
                 <div>
@@ -97,6 +100,7 @@ export default function Modal() {
                     name="quantity"
                     placeholder="الكمية"
                     onChange={formik.handleChange}
+                    className="form-control border border-secondary"
                   />
                 </div>
                 <div>
@@ -106,17 +110,18 @@ export default function Modal() {
                     accept="image/jpeg , image/png"
                     placeholder="الكمية"
                     onChange={formik.handleChange}
+                    className="form-control border border-secondary"
                   />
                 </div>
                 <div className="modal-footer">
                   <button
                     type="button"
-                    className="btn btn-secondary"
+                    className="btn btn-outline-danger"
                     data-bs-dismiss="modal"
                   >
                     الغاء
                   </button>
-                  <button type="submit" className="btn btn-primary">
+                  <button type="submit" className="btn btn-outline-primary">
                     اضافة منتج
                   </button>
                 </div>

@@ -27,11 +27,10 @@ function Profile() {
     <>
       <div className="Profile">
         <div className="container">
-          <div className="profile-title"></div>
           <div className="row">
             <div className="col-lg-3 ">
               <div className="card mb-4 ">
-                <div className="card-body text-center shadow  bg-white rounded">
+                <div className="card-body text-center shadow  bg-white rounded w-100">
                   <img
                     src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
                     alt="avatar"
@@ -41,14 +40,14 @@ function Profile() {
                   <h5 className="my-3">{user.name}</h5>
                   <p className="text-muted mb-4">{}</p>
                   <div className="d-flex flex-column gap-2">
-                    <NavLink to="/profile/info" className=' btn btn-primary'>معلوماتي </NavLink>
-                    <NavLink to="/profile/edit" className=' btn btn-primary'>تعديل البيانات </NavLink>
-                    {user.role==='seller'?<><NavLink to="/profile/products" className=' btn btn-primary'>منتجاتي </NavLink>
+                    <NavLink to="/profile/info" className=' btn btn-outline-primary  btn-block  '>معلوماتي </NavLink>
+                    <NavLink to="/profile/edit" className=' btn btn-outline-warning  btn-block text-black'>تعديل البيانات </NavLink>
+                    {user.role==='seller'?<><NavLink to="/profile/products" className=' btn btn-outline-warning  btn-block text-black'>منتجاتي </NavLink>
                     <AddProduct/></>:""}
                     
                  </div>
 
-                  <div className="d-flex justify-content-center mb-2"></div>
+                  {/* <div className="d-flex justify-content-center mb-2"></div> */}
                 </div>
               </div>
             </div>

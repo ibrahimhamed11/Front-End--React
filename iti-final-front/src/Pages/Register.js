@@ -65,6 +65,7 @@ export default function Register() {
     },
   });
 
+  
   return (
     <div className="register w-100">
       <div className="container">
@@ -159,6 +160,7 @@ export default function Register() {
                   name="role"
                   onChange={formik.handleChange}
                 >
+                  <option value="">اختاري نوع الحساب </option>
                   <option value="mother">أم</option>
                   <option value="pregnant">حامل</option>
                   <option value="seller">تاجر</option>
