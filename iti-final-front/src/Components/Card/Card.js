@@ -7,7 +7,7 @@ import { NavLink } from "react-router-dom";
 
 function Card(props) {
   const { product } = props;
-  const { _id } = useSelector((state) => state.UserSlice.user)||"";
+  const { _id } = useSelector((state) => state.UserSlice.user);
   const dispatch = useDispatch();
   const item = product;
 

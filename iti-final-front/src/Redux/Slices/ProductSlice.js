@@ -7,7 +7,6 @@ import axios from "axios";
 export const getAllProducts = createAsyncThunk("Product/products", async () => {
   try {
     let response = await axios.get("http://localhost:4000/products/getAll");
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -17,7 +16,6 @@ export const getAllProducts = createAsyncThunk("Product/products", async () => {
 export const getProductById = createAsyncThunk("Product/getProductById", async (_id) => {
     try {
             let response = await axios.get(`http://localhost:4000/products/${_id}`)
-            console.log(response.data)
             return response.data
     }catch (error) {
         console.log(error)
@@ -67,17 +65,15 @@ const ProductSlice = createSlice({
   },
   extraReducers: {
     [getAllProducts.pending]: () => {
-      console.log("pending");
+
     },
     [getAllProducts.fulfilled]: (state, action) => {
       state.products = action.payload;
-      console.log(state.products);
     },
     [getProductById.fulfilled]: (state, action) => {
       state.product = action.payload
     },
     [getCartItems.fulfilled] : (state,action) => {
-      console.log(action.payload)
       state.cartItems = action.payload;
       console.log(state.cartItems)
     }

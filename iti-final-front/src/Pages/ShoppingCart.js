@@ -8,8 +8,9 @@ import { deleteCartItem } from "../Redux/Slices/ProductSlice";
 export default function ShoppingCart() {
   const dispatch = useDispatch();
   const { cartItems } = useSelector((state) => state.ProductSlice) || [];
-  console.log(cartItems);
+  console.log(cartItems)
   const [total, setTotal] = useState(0);
+  const [items,setItems] = useState([]);
 
   function cartTotal(cartItems) {
     let items = [...cartItems];
@@ -20,9 +21,20 @@ export default function ShoppingCart() {
     return total;
   }
 
+
   useEffect(() => {
-    setTotal(cartTotal(cartItems));
+    setItems(cartItems)
   }, [cartItems]);
+
+
+  useEffect(() => {
+    setTotal(cartTotal(items));
+
+  }, [ items]);
+
+  useEffect(() => {
+
+  }, [cartItems, total]);
   return (
     <>
       <section className="cart">
@@ -35,10 +47,10 @@ export default function ShoppingCart() {
                 </div>
                 <div className="card-body">
                   {/* Single item */}
-                  {cartItems.map((item, index) => {
+                  {items.map((item, index) => {
                     return (
                       <>
-                        <div className="row">
+                        <div className="row" key={index}>
                           <div className="col-lg-3 col-md-12 mb-4 mb-lg-0">
                             {/* Image */}
                             <div
@@ -108,7 +120,7 @@ export default function ShoppingCart() {
                                   id="form1"
                                   min="0"
                                   name="quantity"
-                                  value="1"
+                                  value={item.quantity}
                                   type="number"
                                   className="form-control text-center"
                                 />

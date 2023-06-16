@@ -3,9 +3,26 @@ import "./profile.css";
 import AddProduct from "../Components/AddProduct/AddProduct";
 import { NavLink, Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useState } from "react";
+import { useEffect } from "react";
 
 function Profile() {
-  const user = useSelector(state => state.UserSlice.user)
+  const {user} = useSelector(state => state.UserSlice)
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulating an asynchronous data fetch
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 20);
+  }, []);
+
+  // Render a loading state while waiting for the data
+  if (isLoading) {
+    return "";
+  }
+
+  
   return (
     <>
       <div className="Profile">

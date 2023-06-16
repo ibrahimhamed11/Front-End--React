@@ -1,7 +1,7 @@
 import { useRef, React } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import Logo from "../../images/main/logo.png";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./navbar.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,7 +11,7 @@ export default function Navbar() {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.UserSlice.isLoggedIn);
   const user = useSelector((state) => state.UserSlice.user);
-  console.log(user);
+  const navigate = useNavigate();
 
   const navRef = useRef();
   const showNavbar = () => {
@@ -35,31 +35,38 @@ export default function Navbar() {
           ) : (
             ""
           )}
-          {!user || user.role === "mother" ?(
-           <> <NavLink to="products" className="links">
-              تسوقي
-            </NavLink>
-            <NavLink to="blog" className="links">
-            مجتمعنا
-          </NavLink>
+          {!user || user.role === "mother" ? (
+            <>
+              {" "}
+              <NavLink to="products" className="links">
+                تسوقي
+              </NavLink>
+              <NavLink to="blog" className="links">
+                مجتمعنا
+              </NavLink>
             </>
-          )  : (
+          ) : (
             ""
           )}
 
           <NavLink to="about" className="links">
             عنا
           </NavLink>
-      
+
           <NavLink to="cart" className="links register-btn">
-                عربة التسوق
-              </NavLink>
+            عربة التسوق
+          </NavLink>
           {isLoggedIn ? (
             <>
               <span className="profile"> {user.name}</span>
-           
-              <span onClick={() => dispatch(logOut())} className="logOut">
-            
+
+              <span
+                onClick={() => {
+                  dispatch(logOut());
+                  navigate('login')
+                }}
+                className="logOut"
+              >
                 Log out
               </span>
             </>
