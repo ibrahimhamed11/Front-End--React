@@ -51,7 +51,7 @@ function Products() {
           <div className="card-info">
             {itemsToRender
               .filter((product) => {
-                return product.title
+                return product.name
                   .toLowerCase()
                   .includes(search.toLowerCase());
               })
