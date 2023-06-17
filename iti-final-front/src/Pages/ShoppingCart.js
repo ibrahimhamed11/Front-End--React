@@ -89,7 +89,7 @@ export default function ShoppingCart() {
 
                            <button
                              type="button"
-                             className="btn btn-primary btn-sm ms-1 mb-2"
+                             className="btn btn-outline-danger btn-sm ms-1 mb-2"
                              data-mdb-toggle="tooltip"
                              title="Remove item"
                              onClick={() => {
@@ -100,7 +100,7 @@ export default function ShoppingCart() {
                            </button>
                            <button
                              type="button"
-                             className="btn btn-danger btn-sm mb-2"
+                             className="btn btn-outline-primary btn-sm mb-2"
                              data-mdb-toggle="tooltip"
                              title="Move to the wish list"
                            >
@@ -117,7 +117,7 @@ export default function ShoppingCart() {
                            >
                              <button
                                type="button"
-                               className="btn btn-primary px-3 ms-2 h-25"
+                               className="btn btn-outline-danger px-3 ms-2 h-25"
                                onClick={() => {
                                  let quantity = item.quantity -1;
                                  decreaseQuantity(quantity,item._id);
@@ -141,7 +141,7 @@ export default function ShoppingCart() {
                              </div>
 
                              <button
-                               className="btn btn-primary px-3 me-2 h-25"
+                               className="btn btn-outline-primary px-3 me-2 h-25"
                                onClick={() => {
                                  let quantity = item.quantity + 1;
                                  let id = item._id
@@ -236,7 +236,7 @@ export default function ShoppingCart() {
 
                  <button
                    type="button"
-                   className="btn btn-primary btn-lg btn-block"
+                   className="btn btn-outline-success btn-mm btn-block"
                  >
                    الدفع
                  </button>
@@ -248,7 +248,7 @@ export default function ShoppingCart() {
      </section>: <section className="empty-cart">
       <img src={EmptyCart} className="empty-img" alt="empty cart"/>
       <h3 className="empty-text">العربة فارغه</h3>
-      <button className="btn btn-primary px-5 py-2" onClick={()=> navigate('/products')}>تسوقي الان</button>
+      <button className="btn btn-outline-primary px-5 py-2" onClick={()=> navigate('/products')}>تسوقي الان</button>
      </section>
 
      }

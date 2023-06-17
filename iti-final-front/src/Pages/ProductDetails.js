@@ -80,7 +80,7 @@ function ProductDetails() {
                 <span>{item.price}</span>
                 <p>{item.description}</p>
                 <p>{item.content}</p>
-                <button className="add-cart" onClick={handleAddToCart}>اضف الى العربة</button>
+                <button className="btn btn-outline-primary" onClick={handleAddToCart}>اضف الى العربة</button>
               </div>
             </div>
           </div>
