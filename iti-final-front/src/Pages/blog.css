@@ -9,8 +9,8 @@
     margin: auto;
 }
 .title-blog{
-    padding: 20px;
-    margin-top: 50px;
+    padding: 10px;
+    margin-top: 30;
 }
 .title-blog h1{
     text-align: center;
@@ -27,7 +27,7 @@
     margin-top: 10px;
 } */
 .blog-contant{
-    margin-top: 30px;
+    margin-top: 10px;
     display: flex;
     justify-content: space-between;
     gap: 10px;    

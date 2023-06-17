@@ -38,7 +38,7 @@ function Blog() {
     <div className="Blog">
         <div className="container">
             <div className="title-blog">
-                <h1>مجتمعنا</h1>
+                <h1>المقالات</h1>
             </div>
             <div className="blog-contant">
               <div className='card-info'>
