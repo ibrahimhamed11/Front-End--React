@@ -1,19 +1,22 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./productDetails.css";
 import ThumbImg from "../images/product-image/Newborn-baby-sleeping.jpg";
-import { addToCart } from "../Redux/Slices/ProductSlice";
-
-
+import { addToCart, updateCartItem } from "../Redux/Slices/ProductSlice";
 
 function ProductDetails() {
-  const  item  = useSelector((state) => state.ProductSlice.product);
+  const item = useSelector((state) => state.ProductSlice.product);
+  const { cartItems } = useSelector((state) => state.ProductSlice);
   const image = [ThumbImg, item.image, ThumbImg, item.image];
   const thumbRef = useRef();
   const [mainImage, setMainImage] = useState(item.image);
   const dispatch = useDispatch();
-  const {_id} = useSelector(state => state.UserSlice.user)
+  const { _id } = useSelector((state) => state.UserSlice.user) || "";
 
+
+  useEffect(()=> {
+
+  },[cartItems])
 
   function handleImage(index) {
     setMainImage(image[index]);
@@ -24,12 +27,29 @@ function ProductDetails() {
     images[index].classList.add("active");
   }
 
-  function handleAddToCart() {
-      const quantity = 1; 
-      const product = item._id
-      const user = _id;
-      dispatch(addToCart({quantity,product,user}))
+  function increaseQuantity(quantity, itemId) {
+    dispatch(updateCartItem({ quantity, itemId }));
+  }
 
+  function handleAddToCart() {
+    let quantity = 1;
+    const product = item._id;
+    const user = _id;
+    let isExist = false;
+    for (let i = 0; i < cartItems.length; i++) {
+      if (cartItems[i]._id === item._id) {
+        isExist = true;
+        quantity = cartItems[i].quantity
+        break;
+      }
+    }
+
+    if (isExist) {
+      quantity +=1
+      increaseQuantity(quantity,product);
+    } else {
+      dispatch(addToCart({ quantity, product, user }));
+    }
   }
 
   return (
@@ -60,7 +80,7 @@ function ProductDetails() {
                 <span>{item.price}</span>
                 <p>{item.description}</p>
                 <p>{item.content}</p>
-                <button className="btn btn-outline-primary btn-lg btn-block" onClick={handleAddToCart}>اضف الى العربة</button>
+                <button className="add-cart" onClick={handleAddToCart}>اضف الى العربة</button>
               </div>
             </div>
           </div>

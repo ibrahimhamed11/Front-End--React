@@ -3,9 +3,9 @@ import axios from "axios";
 import jwtDecode from "jwt-decode";
 import AccordionItem from "react-bootstrap/esm/AccordionItem";
 
-export const logInUser = createAsyncThunk("Auth/logIn", async (user) => {
+export const logInUser = createAsyncThunk("Auth/logIn", async (name,email,username,phone,password,address,age,role) => {
   try {
-    let response = await axios.post("http://localhost:4000/user/login", user);
+    let response = await axios.post("http://localhost:4000/user/login", name,email,username,phone,password,address,age,role);
     return response.data.data;
   } catch (error) {
     console.log(error);
