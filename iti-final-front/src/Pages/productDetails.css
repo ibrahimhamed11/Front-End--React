@@ -89,7 +89,7 @@
   margin: 15px 0;
 }
 
-.box .add-cart {
+/* .box .add-cart {
   background: #333;
   color: #fff;
   outline: none;
@@ -98,11 +98,14 @@
   padding: 10px 25px;
   margin-top: 15px;
   border-radius: 6px;
-}
+} */
 
-@media (max-width: 500px) {
+@media (max-width: 1200px) {
+  .page-details{
+    width: 100%;
+  }
   .main-img img {
-    width: 400px;
+    width: 100%;
   }
 
   .thumb {

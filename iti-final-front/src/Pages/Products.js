@@ -38,7 +38,7 @@ function Products() {
     <>
       <div className="container">
         <div className="title-product">
-          <h1>المتجر</h1>
+          <h1>المنتجات </h1>
         </div>
         <div className="search">
           <input

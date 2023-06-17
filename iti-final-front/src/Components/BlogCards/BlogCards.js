@@ -8,8 +8,7 @@ function BlogCards(props) {
     <img src={BlogImage} alt="Blog-Image"/>
         <h2>{blog.title}</h2>
         <p>{blog.body}</p>
-        <buuton><a href="#">أقرا المزيد</a></buuton>
-    
+        <buuton className="btn btn-outline-primary ">أقرا المزيد</buuton>
    </div>
   )
 }

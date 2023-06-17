@@ -32,7 +32,7 @@ function Card(props) {
         <p className="description">{product.description}</p>
         <p>EGP {product.price}</p>
       </NavLink>
-      <button type="button" onClick={handleAddToCart}>
+      <button type="button" className="btn btn-outline-primary " onClick={handleAddToCart}>
         اضف الى العربة
       </button>
     </div>

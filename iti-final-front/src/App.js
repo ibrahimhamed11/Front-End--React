@@ -21,6 +21,7 @@ import { getCartItems } from "./Redux/Slices/ProductSlice";
 import { getUserData } from "./Redux/Slices/UserSlice";
 
 
+
 function App() {
   const dispatch = useDispatch();
   const { _id } = useSelector((state) => state.ProductSlice.product);
@@ -53,6 +54,7 @@ function App() {
         {/* <Route path="*"  element={<Navigate to="404" replace={true}/>}/> */}
       </Routes>
       <Footer />
+      
     </>
   );
 }
