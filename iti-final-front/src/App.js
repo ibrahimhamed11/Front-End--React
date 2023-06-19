@@ -31,8 +31,11 @@ function App() {
  
 
   useEffect(() => {
-    dispatch(getUserData(userId));
-    dispatch(getCartItems(userId))
+    if(userId) {
+      dispatch(getUserData(userId));
+      dispatch(getCartItems(userId))
+    }
+
   }, [dispatch, userId]);
 
   return (

@@ -11,15 +11,17 @@ export default function Navbar() {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.UserSlice.isLoggedIn);
   const user = useSelector((state) => state.UserSlice.user);
+  const cartItems = useSelector((state) => state.ProductSlice.cartItems) || [];
   const navigate = useNavigate();
 
   const navRef = useRef();
   const showNavbar = () => {
     navRef.current.classList.toggle("responsive-nav");
   };
+    
 
   return (
-    <header className="container-fluid">
+    <header className="container-fluid shadow-lg">
       <div className="container">
         <NavLink to="home" className="logo">
           <img src={Logo} alt="logo" />
@@ -52,21 +54,30 @@ export default function Navbar() {
             عنا
           </NavLink>
 
-          <NavLink to="cart" className="links register-btn">
-            عربة التسوق
-          </NavLink>
           {isLoggedIn ? (
             <>
-              <span className="profile"> {user.name || ""}</span>
-
-              <span
-                onClick={() => {
-                  dispatch(logOut());
-                  navigate('login')
-                }}
-                className="logOut"
-              >
-                Log out
+              <span className="profile-name links">
+                {" "}
+                أهلاً {user.name || ""}
+                <span className="profile-droplist">
+                  <span
+                    onClick={() => {
+                      navigate("profile");
+                    }}
+                  >
+                    <ion-icon name="person-circle-outline"></ion-icon> حسابي{" "}
+                  </span>
+                  <span><ion-icon name="heart-outline"></ion-icon> قائمة الامنيات</span>
+                  <span
+                    onClick={() => {
+                      dispatch(logOut());
+                      navigate("login");
+                    }}
+                    className=""
+                  >
+                   <ion-icon name="log-out-outline"></ion-icon> تسجيل الخروج
+                  </span>
+                </span>
               </span>
             </>
           ) : (
@@ -75,12 +86,22 @@ export default function Navbar() {
                 التسجيل
               </NavLink>
               <NavLink to="login" className="links login-btn">
-                {" "}
                 دخول
               </NavLink>
             </>
           )}
-
+          {isLoggedIn? <NavLink to="cart" className="links cart-button">
+            عربة التسوق
+            <span className="cart-icon-container">
+              <ion-icon name="cart-outline"></ion-icon>
+              {cartItems.length > 0 ? (
+                <span className="cart-number">{cartItems.length}</span>
+              ) : (
+                ""
+              )}
+            </span>
+          </NavLink>:""}
+         
           <button className="nav-btn nav-btn-close" onClick={showNavbar}>
             <FaTimes />
           </button>
