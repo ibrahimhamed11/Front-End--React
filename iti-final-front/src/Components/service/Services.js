@@ -41,7 +41,7 @@ export default function Services() {
               <p>Nunc suscipit. Suspendisse enim arcu, convallis non, cursus</p>
             </figcaption>
           </article>
-          <article  className="services__wrapper-item">
+          {/* <article  className="services__wrapper-item">
             <figure>
               <img src={ImageDoctor} alt="" />
             </figure>
@@ -49,7 +49,7 @@ export default function Services() {
               <h4>اكفأ الاطباء لطفلك</h4>
               <p>Nunc suscipit. Suspendisse enim arcu, convallis non, cursus</p>
             </figcaption>
-          </article>
+          </article> */}
         </div>
       </div>
     </section>
