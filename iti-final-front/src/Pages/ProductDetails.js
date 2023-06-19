@@ -2,10 +2,11 @@ import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./productDetails.css";
 import ThumbImg from "../images/product-image/Newborn-baby-sleeping.jpg";
-import { addToCart, updateCartItem } from "../Redux/Slices/ProductSlice";
+import { addToCart, getCartItems, updateCartItem } from "../Redux/Slices/ProductSlice";
 
 function ProductDetails() {
   const item = useSelector((state) => state.ProductSlice.product);
+  const api = "http://localhost:4000/"
   const { cartItems } = useSelector((state) => state.ProductSlice);
   const image = [ThumbImg, item.image, ThumbImg, item.image];
   const thumbRef = useRef();
@@ -15,8 +16,8 @@ function ProductDetails() {
 
 
   useEffect(()=> {
-
-  },[cartItems])
+    dispatch(getCartItems(_id))
+  },[dispatch])
 
   function handleImage(index) {
     setMainImage(image[index]);
@@ -63,7 +64,7 @@ function ProductDetails() {
                 {image.map((item, index) => {
                   return (
                     <img
-                      src={item}
+                      src={`${api}${item}`}
                       alt="main-img"
                       key={index}
                       onClick={() => {

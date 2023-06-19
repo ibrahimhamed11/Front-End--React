@@ -45,6 +45,7 @@ export const getCartItems = createAsyncThunk(
   async (userId) => {
     try {
       let response = await axios.get(`http://localhost:4000/cart/${userId}`);
+      console.log(userId)
       console.log(response);
       return response.data;
     } catch (error) {
@@ -88,10 +89,7 @@ const ProductSlice = createSlice({
   },
 
   reducers: {
-    fetchCartItems : (state, action) => {
-     const _id = localStorage.getItem("id")
-      getCartItems(_id)
-    }
+
   },
   extraReducers: (builder) => {
     builder.addCase(getAllProducts.pending, (state, action) => {
@@ -110,5 +108,5 @@ const ProductSlice = createSlice({
   },
 });
 
-export const {fetchCartItems} = ProductSlice.actions;
+
 export default ProductSlice.reducer;

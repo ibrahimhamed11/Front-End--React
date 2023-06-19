@@ -1,7 +1,7 @@
 .product-info {
   padding: 15px;
   border-radius: 10px;
-  width: 30%;
+  width: calc(25% - 20px);
   /* border: 1px solid #333; */
   margin-bottom: 20px;
   box-shadow: 0 0 5px #ccc;

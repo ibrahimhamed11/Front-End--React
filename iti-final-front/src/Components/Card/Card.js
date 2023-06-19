@@ -3,7 +3,6 @@ import "./card.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addToCart,
-  fetchCartItems,
   getCartItems,
   getProductById,
   updateCartItem,
@@ -12,6 +11,7 @@ import { NavLink } from "react-router-dom";
 
 function Card(props) {
   const { product } = props;
+  const api = "http://localhost:4000/";
 
   const { _id } = useSelector((state) => state.UserSlice.user) || "";
   const { cartItems } = useSelector((state) => state.ProductSlice);
@@ -21,11 +21,11 @@ function Card(props) {
 
   function increaseQuantity(quantity, itemId) {
     dispatch(updateCartItem({ quantity, itemId }));
-    dispatch(getCartItems(_id))
+    dispatch(getCartItems(_id));
   }
 
-
   function handleAddToCart() {
+
     let quantity = 1;
     const product = item._id;
     const user = _id;
@@ -44,7 +44,7 @@ function Card(props) {
     } else {
       dispatch(addToCart({ quantity, product, user }));
     }
-    dispatch(getCartItems(_id))
+    dispatch(getCartItems(_id));
   }
 
   return (
@@ -56,12 +56,16 @@ function Card(props) {
           dispatch(getProductById(product._id));
         }}
       >
-        <img src={product.image} alt="Product-img" />
-        <p className="title">{product.title}</p>
+        <img src={`${api}${product.image}`} alt="Product-img" />
+        <p className="title">{product.name}</p>
         <p className="description">{product.description}</p>
         <p>EGP {product.price}</p>
       </NavLink>
-      <button type="button" className="btn btn-outline-primary " onClick={handleAddToCart}>
+      <button
+        type="button"
+        className="btn btn-outline-primary "
+        onClick={handleAddToCart}
+      >
         اضف الى العربة
       </button>
     </div>

@@ -3,7 +3,7 @@ import "./shoppingCart.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { useEffect } from "react";
-import { deleteCartItem, updateCartItem } from "../Redux/Slices/ProductSlice";
+import { deleteCartItem, getCartItems, updateCartItem } from "../Redux/Slices/ProductSlice";
 import { useNavigate } from "react-router-dom";
 import EmptyCart from '../images/main/emptyCart.jpg'
 
@@ -11,9 +11,10 @@ export default function ShoppingCart() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { cartItems } = useSelector((state) => state.ProductSlice) || [];
+  const api = "http://localhost:4000/"
   console.log(cartItems);
   const [total, setTotal] = useState(0);
-
+  const _id = localStorage.getItem("id")
   function cartTotal(cartItems) {
     let items = [...cartItems];
     let total = 0;
@@ -25,21 +26,25 @@ export default function ShoppingCart() {
 
   function increaseQuantity(quantity,itemId) {
     dispatch(updateCartItem({quantity,itemId}));
-
+    dispatch(getCartItems(_id))
   }
 
   function decreaseQuantity(quantity,itemId) {
     dispatch(updateCartItem({quantity,itemId}));
     if(!quantity){
       dispatch(deleteCartItem(itemId))
+      dispatch(getCartItems(_id))
     }
-
+    dispatch(getCartItems(_id))
   } 
 
   useEffect(() => {
-    
     setTotal(cartTotal(cartItems));
-  }, [cartItems]);
+    dispatch(getCartItems(_id))
+    dispatch(getCartItems(_id))
+
+
+  }, []);
   return (
     <>
      {cartItems.length > 0 ?   <section className="cart">
@@ -65,7 +70,7 @@ export default function ShoppingCart() {
                              data-mdb-ripple-color="light"
                            >
                              <img
-                               src={item.image}
+                               src={`${api}${item.image}`}
                                className="img-thumbnail"
                                alt="Blue Jeans Jacket"
                              />
@@ -94,6 +99,7 @@ export default function ShoppingCart() {
                              title="Remove item"
                              onClick={() => {
                                dispatch(deleteCartItem(item._id));
+                               dispatch(getCartItems(_id))
                              }}
                            >
                              <i className="fas fa-trash"></i>

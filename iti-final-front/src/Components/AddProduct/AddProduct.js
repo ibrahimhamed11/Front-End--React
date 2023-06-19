@@ -47,8 +47,6 @@ export default function Modal() {
       form_data.append("image", values.image);
       form_data.append("seller",values.seller)
       dispatch(addProduct({form_data}))
-
-
     },
   });
 

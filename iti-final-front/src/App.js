@@ -19,6 +19,8 @@ import EditInfo from "./Components/EditInfo/EditInfo";
 import ShoppingCart from "./Pages/ShoppingCart";
 import { getCartItems } from "./Redux/Slices/ProductSlice";
 import { getUserData } from "./Redux/Slices/UserSlice";
+import BlogDetails from "./Pages/BlogDetails";
+
 
 
 
@@ -43,6 +45,7 @@ function App() {
         <Route path={_id} element={<ProductDetails />} />
         <Route path="about" element={<About />} />
         <Route path="blog" element={<Blog />} />
+        <Route path="blogDetails" element={<BlogDetails />} />
         <Route path="register" element={<Register />} />
         <Route path="login" element={<Login />} />
         <Route path="profile" element={<Profile />}>

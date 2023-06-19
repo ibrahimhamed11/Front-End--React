@@ -53,3 +53,7 @@
   color: #fff;
   border: 1px solid #ff6347;
 } */
+
+.blog_link {
+  text-decoration: none;
+}

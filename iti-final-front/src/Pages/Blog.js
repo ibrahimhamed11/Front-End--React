@@ -3,22 +3,16 @@ import BlogCards from '../Components/BlogCards/BlogCards';
 import './blog.css';
 import axios from 'axios';
 import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getBlogs } from '../Redux/Slices/BlogSlice';
 const pageSize = 12;
 
 function Blog() {
-  const [blogs,setBlogs]=useState([]);
+  const {blogs} = useSelector(state => state.BlogSlice)
   const[currentPage,setCurrentPage]=useState(1);
-
+  const dispatch = useDispatch();
   let noOfPages =  1 ;
-  const getBlogs = async()=>{
-    try{
-      const {data}= await axios.get("https://jsonplaceholder.typicode.com/posts");
-      setBlogs(data);
-      console.log(blogs);
-    }catch{
-      console.log("error")
-    }
-  };
+
 
   const changeCurrentPage = (page)=>{
     setCurrentPage(page);
@@ -32,8 +26,8 @@ function Blog() {
   itemsToRender = itemsToRender.slice(start,end);
 
   useEffect(()=>{
-    getBlogs();
-  },[]);
+    dispatch(getBlogs())
+  },[dispatch]);
   return (
     <div className="Blog">
         <div className="container">
@@ -43,7 +37,7 @@ function Blog() {
             <div className="blog-contant">
               <div className='card-info'>
               {
-                  itemsToRender .map((blog)=>{
+                  itemsToRender.map((blog)=>{
                     return <BlogCards blog ={blog} key={blog.id}/>
                   })
                 }

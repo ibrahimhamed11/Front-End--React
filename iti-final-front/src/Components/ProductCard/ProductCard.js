@@ -7,7 +7,7 @@ export default function Sales({item}) {
   return (
     <>
       <Card style={{ width: "18rem" }}>
-        <Card.Img variant="top" src={`http://localhost:4000/uploads/${item.image}`}  className="product-image"/>
+        <Card.Img variant="top" src={`http://localhost:4000/${item.image}`}  className="product-image"/>
         <Card.Body>
           <Card.Title className="product-title">{item.title}</Card.Title>
           <Card.Text className="product-description">
