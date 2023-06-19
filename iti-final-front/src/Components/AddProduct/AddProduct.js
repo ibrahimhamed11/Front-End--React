@@ -1,21 +1,29 @@
 import { useDispatch, useSelector } from "react-redux";
 import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import './addProduct.css'
+import "./addProduct.css";
 import "bootstrap/dist/js/bootstrap.bundle";
-import React from "react";
-import { addProuct } from "../../Redux/Slices/SellerSlice";
+import React, { useState } from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
+import { addProduct } from "../../Redux/Slices/SellerSlice";
 
 export default function Modal() {
+  const [image, setImage] = useState();
   const { products } = useSelector((state) => state.SellerSlice);
-
+  let form_data = new FormData();
   const dispatch = useDispatch();
+  const _id= localStorage.getItem("id")
+
+  function handleImage(e) {
+    console.log(e.target.files);
+    formik.setFieldValue("image", e.target.files[0]);
+  }
+
   const Schema = Yup.object().shape({
     name: Yup.string().required(),
     description: Yup.string().required(),
     price: Yup.number().required(),
-    quantity: Yup.number().required(),
+    stock: Yup.number().required(),
   });
 
   const formik = useFormik({
@@ -23,13 +31,24 @@ export default function Modal() {
       name: "",
       description: "",
       price: "",
-      quantity: "",
+      stock: "",
+      image: "",
+      seller: _id,
     },
     validationSchema: Schema,
-    onSubmit: (values) => {
-      console.log(values);
-      dispatch(addProuct(values));
-      console.log(products);
+    handleImage: (e) => {
+      console.log();
+    },
+    onSubmit: async (values) => {
+      form_data.append("name", values.name);
+      form_data.append("stock", values.stock);
+      form_data.append("price", values.price);
+      form_data.append("description", values.description);
+      form_data.append("image", values.image);
+      form_data.append("seller",values.seller)
+      dispatch(addProduct({form_data}))
+
+
     },
   });
 
@@ -68,7 +87,7 @@ export default function Modal() {
               <form onSubmit={formik.handleSubmit}>
                 <div>
                   <input
-                  id="productName"
+                    id="productName"
                     type="text"
                     name="name"
                     placeholder="اسم المنتج"
@@ -97,7 +116,7 @@ export default function Modal() {
                 <div>
                   <input
                     type="number"
-                    name="quantity"
+                    name="stock"
                     placeholder="الكمية"
                     onChange={formik.handleChange}
                     className="form-control border border-secondary"
@@ -108,8 +127,8 @@ export default function Modal() {
                     type="file"
                     name="image"
                     accept="image/jpeg , image/png"
-                    placeholder="الكمية"
-                    onChange={formik.handleChange}
+                    placeholder="Image"
+                    onChange={handleImage}
                     className="form-control border border-secondary"
                   />
                 </div>

@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import jwtDecode from "jwt-decode";
-import AccordionItem from "react-bootstrap/esm/AccordionItem";
+
 
 export const logInUser = createAsyncThunk("Auth/logIn", async (name,email,username,phone,password,address,age,role) => {
   try {
@@ -22,6 +21,16 @@ export const getUserData = createAsyncThunk("Auth/getData", async (userId)=> {
     }
 })
 
+export const updateUser = createAsyncThunk("Auth/updateUser", async ({updatedData,userId})=> {
+  try {
+        let response = await axios.put(`http://localhost:4000/user/${userId}`,updatedData);
+        console.log(updatedData)
+        console.log(response)
+  }catch(error) {
+
+  }
+})
+
 const UserSlice = createSlice({
   name: "Auth",
   initialState: {
@@ -32,17 +41,7 @@ const UserSlice = createSlice({
     error: null,
   },
   reducers: {
-    // logIn: (state) => {
-    //   const token = localStorage.getItem("tkn");
-    //   if (token) {
-    //     const tokenDecoded = jwtDecode(localStorage.getItem("tkn"));
-    //     console.log(tokenDecoded)
-    //     state.user = tokenDecoded.userId;
-    //     console.log(state.user)
-    //     console.log(state.user)
-    //     state.isLoggedIn = true;
-    //   }
-    // },
+
     logOut: (state) => {
       state.isLoggedIn = false;
       state.accessToken = null;

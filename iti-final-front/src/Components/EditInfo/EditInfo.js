@@ -1,10 +1,13 @@
 import { useFormik } from "formik";
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import * as Yup from "yup";
+import { updateUser } from "../../Redux/Slices/UserSlice";
+
 
 function EditInfo() {
   const user = useSelector((state) => state.UserSlice.user);
+  const dispatch = useDispatch();
 
   const Schema = Yup.object().shape({
     email: Yup.string().email().required(),
@@ -16,7 +19,7 @@ function EditInfo() {
       .min(8, "الرقم السري لابد ان يكون اكبر من 8 حرف ")
       .max(20, "الرقم السري لا يمكن ان يتجاوز 20 حرف")
       .required("مطلوب"),
-      confirmpassword: Yup.string()
+    confirmpassword: Yup.string()
       .min(8, "الرقم السري لابد ان يكون اكبر من 8 حرف ")
       .max(20, "الرقم السري لا يمكن ان يتجاوز 20 حرف")
       .required("مطلوب")
@@ -33,7 +36,11 @@ function EditInfo() {
       address: user.address,
     },
     validationSchema: Schema,
-    onSubmit: () => {},
+    onSubmit: (values) => {
+      const id = user._id
+        dispatch(updateUser({values,id}))
+        console.log(id)
+    },
   });
 
   return (
@@ -70,7 +77,7 @@ function EditInfo() {
                       className="w-100 border border-secondary form-control"
                       onChange={formik.handleChange}
                     />
-                    <small  className="text-danger">{formik.errors.email}</small>
+                    <small className="text-danger">{formik.errors.email}</small>
                   </div>
                 </div>
                 <hr />
@@ -82,11 +89,12 @@ function EditInfo() {
                     <input
                       type="text"
                       name="phone"
+                      maxLength={11}
                       defaultValue={user.phone}
                       className="w-100 border border-secondary form-control "
                       onChange={formik.handleChange}
                     />
-                    <small  className="text-danger">{formik.errors.phone}</small>
+                    <small className="text-danger">{formik.errors.phone}</small>
                   </div>
                 </div>
                 <hr />
@@ -102,7 +110,9 @@ function EditInfo() {
                       className="w-100 border border-secondary form-control "
                       onChange={formik.handleChange}
                     />
-                    <small  className="text-danger">{formik.errors.address}</small>
+                    <small className="text-danger">
+                      {formik.errors.address}
+                    </small>
                   </div>
                 </div>
                 <hr />
@@ -113,11 +123,13 @@ function EditInfo() {
                   <div className="col-sm-9">
                     <input
                       type="password"
-                      name="name"
+                      name="oldPassword"
                       className="w-100 border border-secondary form-control"
                       onChange={formik.handleChange}
                     />
-                    <small className="text-danger">{formik.errors.password}</small>
+                    <small className="text-danger">
+                      {formik.errors.password}
+                    </small>
                   </div>
                 </div>
                 <hr />
@@ -128,11 +140,13 @@ function EditInfo() {
                   <div className="col-sm-9">
                     <input
                       type="password"
-                      name="name"
+                      name="password"
                       className="w-100 border border-secondary form-control "
                       onChange={formik.handleChange}
                     />
-                    <small  className="text-danger">{formik.errors.password}</small>
+                    <small className="text-danger">
+                      {formik.errors.password}
+                    </small>
                   </div>
                 </div>
                 <hr />
@@ -147,7 +161,9 @@ function EditInfo() {
                       className="w-100 border border-secondary form-control "
                       onChange={formik.handleChange}
                     />
-                    <small  className="text-danger">{formik.errors.confirmpassword}</small>
+                    <small className="text-danger">
+                      {formik.errors.confirmpassword}
+                    </small>
                   </div>
                 </div>
                 <hr />

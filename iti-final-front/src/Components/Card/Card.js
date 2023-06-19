@@ -1,9 +1,10 @@
-import React, { useState } from "react";
-import ProductImage from "../../images/product-image/Newborn-baby-sleeping.jpg";
+import React, { useEffect } from "react";
 import "./card.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addToCart,
+  fetchCartItems,
+  getCartItems,
   getProductById,
   updateCartItem,
 } from "../../Redux/Slices/ProductSlice";
@@ -20,7 +21,9 @@ function Card(props) {
 
   function increaseQuantity(quantity, itemId) {
     dispatch(updateCartItem({ quantity, itemId }));
+    dispatch(getCartItems(_id))
   }
+
 
   function handleAddToCart() {
     let quantity = 1;
@@ -41,6 +44,7 @@ function Card(props) {
     } else {
       dispatch(addToCart({ quantity, product, user }));
     }
+    dispatch(getCartItems(_id))
   }
 
   return (

@@ -37,7 +37,6 @@ export default function Navbar() {
           )}
           {!user || user.role === "mother" ? (
             <>
-              {" "}
               <NavLink to="products" className="links">
                 تسوقي
               </NavLink>
@@ -58,7 +57,7 @@ export default function Navbar() {
           </NavLink>
           {isLoggedIn ? (
             <>
-              <span className="profile"> {user.name}</span>
+              <span className="profile"> {user.name || ""}</span>
 
               <span
                 onClick={() => {
