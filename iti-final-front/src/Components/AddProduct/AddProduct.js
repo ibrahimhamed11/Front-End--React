@@ -1,15 +1,14 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./addProduct.css";
 import "bootstrap/dist/js/bootstrap.bundle";
-import React, { useState } from "react";
+import React from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { addProduct } from "../../Redux/Slices/SellerSlice";
 
 export default function Modal() {
-  const [image, setImage] = useState();
-  const { products } = useSelector((state) => state.SellerSlice);
+
   let form_data = new FormData();
   const dispatch = useDispatch();
   const _id= localStorage.getItem("id")
@@ -39,7 +38,7 @@ export default function Modal() {
     handleImage: (e) => {
       console.log();
     },
-    onSubmit: async (values) => {
+    onSubmit:  (values) => {
       form_data.append("name", values.name);
       form_data.append("stock", values.stock);
       form_data.append("price", values.price);

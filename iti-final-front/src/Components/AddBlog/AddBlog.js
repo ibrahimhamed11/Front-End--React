@@ -1,38 +1,124 @@
-import React from 'react'
-import { useState } from 'react'
+import { useFormik } from "formik";
+import React from "react";
+import * as Yup from "yup";
+import { addNewBlog } from "../../Redux/Slices/BlogSlice";
+import { useDispatch } from "react-redux";
 
 function AddBlog() {
-    const [post,setPost]=useState('');
-    const [file,setFile]=useState('');
-    const [description,setDescription]=useState("");
-    async function addBlog(){
-        // console.warn(post,flie,description);
-        const data = new Date();
-        data.append('post',post);
-        data.append('file',file);
-        data.append('description',description);
-        let result = await fetch("",
-        {
-            method:'POST',
-            body:data
-        });
-        alert("تم النشر بنجاح ")
-    }
+  const dispatch = useDispatch();
+  const form_data = new FormData();
+  const _id = localStorage.getItem("id");
+
+
+  function handleImage(e) {
+    console.log(e.target.files);
+    formik.setFieldValue("image", e.target.files[0]);
+  }
+
+  const Schema = Yup.object().shape({
+    title: Yup.string().required(),
+    content: Yup.string().required(),
+  });
+
+  const formik = useFormik({
+    initialValues: {
+      title: "",
+      content: "",
+      image: "",
+      author: _id,
+    },
+    validationSchema: Schema,
+    handleImage: () => {
+
+    },
+    onSubmit:  (values) => {
+      form_data.append("title", values.title);
+      form_data.append("content", values.content);
+      form_data.append("author", values.author);
+      form_data.append("image", values.image);
+      dispatch(addNewBlog(form_data));
+    },
+  });
   return (
-    <div className='col-sm-6 offset-sm-3 container' >
-        <h1 className='text-center mt-5 '>أضف منشور جديد </h1>
-        <br/>
-        <input type='text' className='form-control' placeholder='عنوان المنشور'
-        onChange={(e)=>setPost(e.target.value)}/><br/>
+    <>
+      <button
+        type="button"
+        className="btn btn-outline-warning btn-block text-black"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+      >
+        اضافة منشور جديد{" "}
+      </button>
 
-        <input type='file' className='form-control' placeholder='صورة المنشور'
-       onChange={(e)=>setFile(e.target.value)}/><br/>
-        <input type='text' className='form-control' placeholder='الوصف' 
-       onChange={(e)=>setDescription(e.target.value)}/><br/>
-
-        <button onClick={addBlog} className='btn btn-outline-primary'>أضف منشور </button>
-    </div>
-  )
+      <div
+        className="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h1 className="modal-title fs-5 " id="exampleModalLabel">
+                إضافة منشور
+              </h1>
+              <button
+                type="button"
+                className="btn-close mx-5"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div className="modal-body">
+              <form onSubmit={formik.handleSubmit}>
+                <div>
+                  <input
+                    id="productName"
+                    type="text"
+                    name="title"
+                    placeholder="عنوان المنشور"
+                    className="form-control border border-secondary"
+                    onChange={formik.handleChange}
+                  />
+                </div>
+                <div>
+                  <textarea
+                    placeholder="اضف وصف مناسب لسؤالك "
+                    className="form-control my-2 p-2"
+                    name="content"
+                    onChange={formik.handleChange}
+                  />
+                </div>
+                <div>
+                  <input
+                    type="file"
+                    name="image"
+                    accept="image/jpeg , image/png"
+                    placeholder="Image"
+                    className="form-control border border-secondary"
+                    onChange={handleImage}
+                  />
+                </div>
+                <div className="modal-footer">
+                  <button
+                    type="button"
+                    className="btn btn-outline-danger"
+                    data-bs-dismiss="modal"
+                  >
+                    الغاء
+                  </button>
+                  <button type="submit" className="btn btn-outline-primary">
+                    اضافة منشور
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }
 
-export default AddBlog;
+export default AddBlog;

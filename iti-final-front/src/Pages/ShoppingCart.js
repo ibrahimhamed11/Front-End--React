@@ -41,8 +41,6 @@ export default function ShoppingCart() {
   useEffect(() => {
     setTotal(cartTotal(cartItems));
     dispatch(getCartItems(_id))
-    dispatch(getCartItems(_id))
-
 
   }, []);
   return (
@@ -98,8 +96,8 @@ export default function ShoppingCart() {
                              data-mdb-toggle="tooltip"
                              title="Remove item"
                              onClick={() => {
+                              dispatch(getCartItems(_id))
                                dispatch(deleteCartItem(item._id));
-                               dispatch(getCartItems(_id))
                              }}
                            >
                              <i className="fas fa-trash"></i>
@@ -125,8 +123,11 @@ export default function ShoppingCart() {
                                type="button"
                                className="btn btn-outline-danger px-3 ms-2 h-25"
                                onClick={() => {
+                                dispatch(getCartItems(_id))
                                  let quantity = item.quantity -1;
                                  decreaseQuantity(quantity,item._id);
+
+
                                }}
                              >
                                <i className="fas fa-minus"></i>
@@ -149,6 +150,7 @@ export default function ShoppingCart() {
                              <button
                                className="btn btn-outline-primary px-3 me-2 h-25"
                                onClick={() => {
+                                dispatch(getCartItems(_id))
                                  let quantity = item.quantity + 1;
                                  let id = item._id
                                  increaseQuantity(quantity,id);

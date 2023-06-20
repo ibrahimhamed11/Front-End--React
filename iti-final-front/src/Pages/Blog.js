@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import BlogCards from '../Components/BlogCards/BlogCards';
 import './blog.css';
-import axios from 'axios';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBlogs } from '../Redux/Slices/BlogSlice';
+import AddBlog from '../Components/AddBlog/AddBlog';
 const pageSize = 12;
 
 function Blog() {
@@ -29,8 +29,11 @@ function Blog() {
     dispatch(getBlogs())
   },[dispatch]);
   return (
+
     <div className="Blog">
+
         <div className="container">
+        <AddBlog />
             <div className="title-blog">
                 <h1>المقالات</h1>
             </div>

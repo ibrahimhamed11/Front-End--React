@@ -15,6 +15,10 @@
     gap: 40px;
 }
 
+.single-comment img {
+    width: 500px;
+}
+
 .comment-body {
     display: flex;
     flex-direction: column;

@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux'
 export default function BlogDetails() {
   const {oneBlog} = useSelector(state => state.BlogSlice);
   console.log(oneBlog)
+  const api = "http://localhost:4000/"
 
   return (
         <div className='container'>
@@ -16,6 +17,7 @@ export default function BlogDetails() {
              <h4 className="comment-title">
                {oneBlog.title}
              </h4>
+             <img src={`${api}${oneBlog.image}`} alt='blog'/> 
              <div className="comment-body">
                <div className="comment-body_head">
                  <img src={userImage} alt="user_image" />
@@ -26,7 +28,7 @@ export default function BlogDetails() {
                </div>
                <div className="comment-body_text">
                  <p>
-                {oneBlog.body}
+                {oneBlog.content}
                  </p>
                </div>
              </div>
