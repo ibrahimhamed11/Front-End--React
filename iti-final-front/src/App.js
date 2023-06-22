@@ -20,6 +20,7 @@ import ShoppingCart from "./Pages/ShoppingCart";
 import { getCartItems } from "./Redux/Slices/ProductSlice";
 import { getUserData } from "./Redux/Slices/UserSlice";
 import BlogDetails from "./Pages/BlogDetails";
+import Todo from "./Components/Todo/Todo";
 
 
 
@@ -55,6 +56,7 @@ function App() {
           <Route path="info" element={<ProfileInfo />} />
           <Route path="edit" element={<EditInfo />} />
           <Route path="products" element={<SellerProducts />} />
+          <Route path='todo' element={<Todo />}/>
         </Route>
         <Route path="cart" element={<ShoppingCart />} />
         {/* <Route path="*"  element={<Navigate to="404" replace={true}/>}/> */}

@@ -1,4 +1,4 @@
-import { useRef, React } from "react";
+import { useRef, React, useState, useEffect } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import Logo from "../../images/main/logo.png";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -13,13 +13,20 @@ export default function Navbar() {
   const user = useSelector((state) => state.UserSlice.user);
   const cartItems = useSelector((state) => state.ProductSlice.cartItems) || [];
   const navigate = useNavigate();
-
+  const [total, setTotal] = useState(null);
   const navRef = useRef();
   const showNavbar = () => {
     navRef.current.classList.toggle("responsive-nav");
   };
-    
 
+  const totalItems = cartItems.reduce((count, product) => {
+    console.log(count);
+    return count + product.quantity;
+  }, 0);
+
+  useEffect(() => {
+    setTotal(totalItems);
+  }, [totalItems]);
   return (
     <header className="container-fluid shadow-lg">
       <div className="container">
@@ -67,7 +74,9 @@ export default function Navbar() {
                   >
                     <ion-icon name="person-circle-outline"></ion-icon> حسابي{" "}
                   </span>
-                  <span><ion-icon name="heart-outline"></ion-icon> قائمة الامنيات</span>
+                  <span>
+                    <ion-icon name="heart-outline"></ion-icon> قائمة الامنيات
+                  </span>
                   <span
                     onClick={() => {
                       dispatch(logOut());
@@ -75,7 +84,7 @@ export default function Navbar() {
                     }}
                     className=""
                   >
-                   <ion-icon name="log-out-outline"></ion-icon> تسجيل الخروج
+                    <ion-icon name="log-out-outline"></ion-icon> تسجيل الخروج
                   </span>
                 </span>
               </span>
@@ -90,18 +99,22 @@ export default function Navbar() {
               </NavLink>
             </>
           )}
-          {isLoggedIn? <NavLink to="cart" className="links cart-button">
-            عربة التسوق
-            <span className="cart-icon-container">
-              <ion-icon name="cart-outline"></ion-icon>
-              {cartItems.length > 0 ? (
-                <span className="cart-number">{cartItems.length}</span>
-              ) : (
-                ""
-              )}
-            </span>
-          </NavLink>:""}
-         
+          {isLoggedIn ? (
+            <NavLink to="cart" className="links cart-button">
+              عربة التسوق
+              <span className="cart-icon-container">
+                <ion-icon name="cart-outline"></ion-icon>
+                {cartItems.length > 0 ? (
+                  <span className="cart-number">{total}</span>
+                ) : (
+                  ""
+                )}
+              </span>
+            </NavLink>
+          ) : (
+            ""
+          )}
+
           <button className="nav-btn nav-btn-close" onClick={showNavbar}>
             <FaTimes />
           </button>

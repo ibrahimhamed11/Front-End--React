@@ -20,8 +20,10 @@ function Card(props) {
   const item = product;
 
   function increaseQuantity(quantity, itemId) {
-    dispatch(updateCartItem({ quantity, itemId }));
-    dispatch(getCartItems(_id));
+    dispatch(updateCartItem({ quantity, itemId })).then(()=> {
+      dispatch(getCartItems(_id));
+    });
+
   }
 
   function handleAddToCart() {
@@ -39,12 +41,25 @@ function Card(props) {
     }
 
     if (isExist) {
-      quantity += 1;
-      increaseQuantity(quantity, product);
+      try{
+        quantity += 1;
+        increaseQuantity(quantity, product).then(()=>{
+          dispatch(getCartItems(_id));
+        });
+      }catch(error){
+        console.log(error)
+      }
+      
     } else {
-      dispatch(addToCart({ quantity, product, user }));
+      try{
+        dispatch(addToCart({ quantity, product, user })).then(()=> {
+          dispatch(getCartItems(_id));
+        });
+      }catch(error) {
+        console.log(error)
+      }
     }
-    dispatch(getCartItems(_id));
+
   }
 
   return (

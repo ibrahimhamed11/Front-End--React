@@ -7,7 +7,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 
 function Profile() {
-  const {user} = useSelector(state => state.UserSlice)
+  const { user } = useSelector((state) => state.UserSlice);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -22,7 +22,6 @@ function Profile() {
     return "";
   }
 
-  
   return (
     <>
       <div className="Profile">
@@ -40,12 +39,38 @@ function Profile() {
                   <h5 className="my-3">{user.name}</h5>
                   <p className="text-muted mb-4">{}</p>
                   <div className="d-flex flex-column gap-2">
-                    <NavLink to="/profile/info" className=' btn btn-outline-primary  btn-block  '>معلوماتي </NavLink>
-                    <NavLink to="/profile/edit" className=' btn btn-outline-warning  btn-block text-black'>تعديل البيانات </NavLink>
-                    {user.role==='seller'?<><NavLink to="/profile/products" className=' btn btn-outline-warning  btn-block text-black'>منتجاتي </NavLink>
-                    <AddProduct/></>:""}
-                    
-                 </div>
+                    <NavLink
+                      to="/profile/todo"
+                      className=" btn btn-outline-primary  btn-block  "
+                    >
+                      قائمة المهام{" "}
+                    </NavLink>
+                    <NavLink
+                      to="/profile/info"
+                      className=" btn btn-outline-primary  btn-block  "
+                    >
+                      معلوماتي{" "}
+                    </NavLink>
+                    <NavLink
+                      to="/profile/edit"
+                      className=" btn btn-outline-warning  btn-block text-black"
+                    >
+                      تعديل البيانات{" "}
+                    </NavLink>
+                    {user.role === "seller" ? (
+                      <>
+                        <NavLink
+                          to="/profile/products"
+                          className=" btn btn-outline-warning  btn-block text-black"
+                        >
+                          منتجاتي{" "}
+                        </NavLink>
+                        <AddProduct />
+                      </>
+                    ) : (
+                      ""
+                    )}
+                  </div>
 
                   {/* <div className="d-flex justify-content-center mb-2"></div> */}
                 </div>
