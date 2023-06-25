@@ -43,18 +43,21 @@ const TodoSlice = createSlice({
   initialState: {
     todos: [],
     completed: [],
-    removed: [],
+    pending: [],
   },
   reducers: {
-    // deleteTodo: (state, action) => {
-    //   console.log(action.payload);
-    //   state.todos.splice(action.payload, 1);
-    // },
-    // endTodo: (state, action) => {
-    //   let index = action.payload;
-    //   state.todos[index].status = "completed";
-    //   console.log(state.todos);
-    // },
+    doneTodos : (state,action) => {
+        state.completed = state.todos.filter((todo) => {
+        return  todo.status === "completed"
+        })
+       state.todos = state.completed
+    },
+    pendingTodos : (state,action) => {
+      state.pending = state.todos.filter((todo) => {
+        return todo.status === "pending";
+      })
+      state.todos = state.pending
+    }
   },
   extraReducers: (builder) => {
     builder.addCase(getTodos.fulfilled, (state, action) => {
@@ -63,5 +66,5 @@ const TodoSlice = createSlice({
   },
 });
 
-// export const {  } = TodoSlice.actions;
+export const { doneTodos,pendingTodos } = TodoSlice.actions;
 export default TodoSlice.reducer;

@@ -1,18 +1,12 @@
 import { useDispatch } from "react-redux";
-import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import "./addProduct.css";
-import "bootstrap/dist/js/bootstrap.bundle";
 import React from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import { addProduct, getAllProducts } from "../../Redux/Slices/SellerSlice";
+import {  editProduct, getAllProducts } from "../../Redux/Slices/SellerSlice";
 
-export default function AddProduct() {
-
-  let form_data = new FormData();
+export default function EditProduct({ product }) {
   const dispatch = useDispatch();
-  const _id= localStorage.getItem("id")
-
+  const _id = localStorage.getItem("id");
   function handleImage(e) {
     console.log(e.target.files);
     formik.setFieldValue("image", e.target.files[0]);
@@ -27,24 +21,27 @@ export default function AddProduct() {
 
   const formik = useFormik({
     initialValues: {
-      name: "",
-      description: "",
-      price: "",
-      stock: "",
-      image: "",
+      name: product.name,
+      description: product.description,
+      price: product.price,
+      stock: product.stock,
+      prdId: product._id,
       seller: _id,
     },
     validationSchema: Schema,
-    onSubmit:  (values) => {
+    onSubmit: (values) => {
+      let form_data = new FormData();
+
       form_data.append("name", values.name);
       form_data.append("stock", values.stock);
       form_data.append("price", values.price);
       form_data.append("description", values.description);
-      form_data.append("image", values.image);
-      form_data.append("seller",values.seller)
-      dispatch(addProduct({form_data})).then(()=> {
+      form_data.append("seller", values.seller);
+      let id = values.prdId;
+      console.log("FormData:", form_data);
+      dispatch(editProduct( {id,form_data} )).then(() => {
         dispatch(getAllProducts());
-      })
+      });
     },
   });
 
@@ -52,25 +49,25 @@ export default function AddProduct() {
     <>
       <button
         type="button"
-        className="btn btn-outline-warning btn-block text-black"
+        className="btn btn-warning btn-block text-black me-5"
         data-bs-toggle="modal"
-        data-bs-target="#addProduct"
+        data-bs-target={`#editProduct${product._id}`}
       >
-        أضف منتج
+        تعديل
       </button>
 
       <div
         className="modal fade"
-        id="addProduct"
+        id={`editProduct${product._id}`}
         tabindex="-1"
-        aria-labelledby="addProductLabel"
+        aria-labelledby="editProductLabel"
         aria-hidden="true"
       >
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <h1 className="modal-title fs-5 " id="addProductLabel">
-                إضافة منتج
+              <h1 className="modal-title fs-5 " id="editProductLabel">
+                تعديل منتج
               </h1>
               <button
                 type="button"
@@ -86,6 +83,7 @@ export default function AddProduct() {
                     id="productName"
                     type="text"
                     name="name"
+                    value={formik.values.name}
                     placeholder="اسم المنتج"
                     onChange={formik.handleChange}
                     className="form-control border border-secondary"
@@ -95,6 +93,7 @@ export default function AddProduct() {
                   <input
                     type="text"
                     name="description"
+                    value={formik.values.description}
                     placeholder="وصف المنتج"
                     onChange={formik.handleChange}
                     className="form-control border border-secondary"
@@ -104,6 +103,7 @@ export default function AddProduct() {
                   <input
                     type="number"
                     name="price"
+                    value={formik.values.price}
                     placeholder="السعر"
                     onChange={formik.handleChange}
                     className="form-control border border-secondary"
@@ -114,6 +114,7 @@ export default function AddProduct() {
                     type="number"
                     name="stock"
                     placeholder="الكمية"
+                    value={formik.values.stock}
                     onChange={formik.handleChange}
                     className="form-control border border-secondary"
                   />
@@ -137,7 +138,7 @@ export default function AddProduct() {
                     الغاء
                   </button>
                   <button type="submit" className="btn btn-outline-primary">
-                    اضافة منتج
+                    تعديل منتج
                   </button>
                 </div>
               </form>

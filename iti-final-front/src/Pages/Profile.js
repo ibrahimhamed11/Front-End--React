@@ -39,12 +39,12 @@ function Profile() {
                   <h5 className="my-3">{user.name}</h5>
                   <p className="text-muted mb-4">{}</p>
                   <div className="d-flex flex-column gap-2">
-                    <NavLink
+                {user?.role === "seller" ? "":                     <NavLink
                       to="/profile/todo"
                       className=" btn btn-outline-primary  btn-block  "
                     >
                       قائمة المهام{" "}
-                    </NavLink>
+                    </NavLink>}
                     <NavLink
                       to="/profile/info"
                       className=" btn btn-outline-primary  btn-block  "
