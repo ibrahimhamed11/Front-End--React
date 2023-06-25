@@ -1,9 +1,7 @@
 import React from "react";
-import BlogImage from "../../images/blog-image/CA_pregnant_08182022istock.jpg";
 import "./blogCard.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { getBlogById } from "../../Redux/Slices/BlogSlice";
 
 function BlogCards(props) {
   const api = "http://localhost:4000/"
@@ -11,7 +9,8 @@ function BlogCards(props) {
   const dispatch = useDispatch();
   const { blog } = props;
   function handleBlog(){
-    dispatch(getBlogById(blog._id))
+    // dispatch(getBlogById(blog._id))
+    localStorage.setItem('blogId',blog._id)
   }
  
   return (
@@ -22,6 +21,7 @@ function BlogCards(props) {
         <p>{blog.content}</p>
       </NavLink>
       <button className="btn btn-outline-primary" onClick={()=> {
+        handleBlog();
         navigate("/blogDetails")
       }}>أقرا المزيد</button>
     </div>

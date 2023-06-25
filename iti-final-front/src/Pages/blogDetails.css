@@ -1,9 +1,9 @@
-.comment-container {
+.blog-container {
     /* width: 80%; */
     margin: 0 auto;
     margin-top: 100px;
 }
-.single-comment {
+.single-blog {
     padding: 40px 40px;
     /* background-color: #eee; */
     border-radius: 6px;
@@ -15,29 +15,56 @@
     gap: 40px;
 }
 
-.single-comment img {
-    width: 500px;
+.single-blog>img {
+    width: 100%;
+    max-width: 800px;
+    max-height: 500px;
 }
 
-.comment-body {
+.single-blog  h3 {
+    font-size: 40px;
+}
+
+.blog-body {
     display: flex;
     flex-direction: column;
     gap: 40px;
 }
 
-.comment-body_head {
+.blog-body_head {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     gap: 40px;
 }
 
-.comment-body_head img {
+.blog-body_head img {
     display: block;
     width: 50px;
 }
 
-.comment-body_head> span {
+.blog-body_head> span {
     display: flex;
     flex-direction: column;
+}
+
+.addComment {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.addComment textarea {
+    display: block;
+    height: auto;
+    padding: 5px 10px;
+}
+
+.addComment .send-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
 }

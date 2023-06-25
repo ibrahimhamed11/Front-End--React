@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { build } from "joi";
-import { act } from "react-dom/test-utils";
+
 
 export const getBlogs = createAsyncThunk("Blog/getBlogs", async () => {
   try {
@@ -54,11 +53,11 @@ const BlogSlice = createSlice({
       state.blogs = action.payload;
     });
     builder.addCase(getBlogs.pending, (state, action) => {
-      // console.log("pending")
+      console.log("pending")
     });
     builder.addCase(getBlogById.fulfilled, (state, action) => {
       state.oneBlog = action.payload;
-      console.log(state.oneBlog);
+
     });
   },
 });

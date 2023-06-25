@@ -1,11 +1,9 @@
 .comment-container {
-    width: 80%;
-    margin: 0 auto;
-    margin-top: 400px;
+    margin: 10px auto;
 }
+
 .single-comment {
     padding: 40px 40px;
-    /* background-color: #eee; */
     border-radius: 6px;
     box-shadow: 0 0 5px #ddd;
     min-height: 200px;
