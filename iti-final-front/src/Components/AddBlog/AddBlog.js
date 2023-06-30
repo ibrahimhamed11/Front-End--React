@@ -1,7 +1,7 @@
 import { useFormik } from "formik";
 import React from "react";
 import * as Yup from "yup";
-import { addNewBlog } from "../../Redux/Slices/BlogSlice";
+import { addNewBlog, getBlogs } from "../../Redux/Slices/BlogSlice";
 import { useDispatch } from "react-redux";
 
 function AddBlog() {
@@ -36,7 +36,9 @@ function AddBlog() {
       form_data.append("content", values.content);
       form_data.append("author", values.author);
       form_data.append("image", values.image);
-      dispatch(addNewBlog(form_data));
+      dispatch(addNewBlog(form_data)).then(()=> {
+        dispatch(getBlogs())
+      });
     },
   });
   return (

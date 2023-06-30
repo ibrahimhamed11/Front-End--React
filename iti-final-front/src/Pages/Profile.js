@@ -39,12 +39,24 @@ function Profile() {
                   <h5 className="my-3">{user.name}</h5>
                   <p className="text-muted mb-4">{}</p>
                   <div className="d-flex flex-column gap-2">
-                {user?.role === "seller" ? "":                     <NavLink
-                      to="/profile/todo"
-                      className=" btn btn-outline-primary  btn-block  "
-                    >
-                      قائمة المهام{" "}
-                    </NavLink>}
+                    {user?.role === "seller" ? (
+                      ""
+                    ) : (
+                      <>
+                        <NavLink
+                          to="/profile/babies"
+                          className=" btn btn-outline-primary  btn-block  "
+                        >
+                        اطفالي
+                        </NavLink>
+                        <NavLink
+                          to="/profile/todo"
+                          className=" btn btn-outline-primary  btn-block  "
+                        >
+                          قائمة المهام{" "}
+                        </NavLink>
+                      </>
+                    )}
                     <NavLink
                       to="/profile/info"
                       className=" btn btn-outline-primary  btn-block  "

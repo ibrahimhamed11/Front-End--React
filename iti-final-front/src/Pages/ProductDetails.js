@@ -8,7 +8,7 @@ function ProductDetails() {
   const item = useSelector((state) => state.ProductSlice.product);
   const api = "http://localhost:4000/"
   const { cartItems } = useSelector((state) => state.ProductSlice);
-  const image = [ThumbImg, item.image, ThumbImg, item.image];
+  const image = [item.image, item.image, item.image, item.image];
   const thumbRef = useRef();
   const [mainImage, setMainImage] = useState(item.image);
   const dispatch = useDispatch();
@@ -33,6 +33,7 @@ function ProductDetails() {
   }
 
   function handleAddToCart() {
+
     let quantity = 1;
     const product = item._id;
     const user = _id;
@@ -40,17 +41,31 @@ function ProductDetails() {
     for (let i = 0; i < cartItems.length; i++) {
       if (cartItems[i]._id === item._id) {
         isExist = true;
-        quantity = cartItems[i].quantity
+        quantity = cartItems[i].quantity;
         break;
       }
     }
 
     if (isExist) {
-      quantity +=1
-      increaseQuantity(quantity,product);
+      try{
+        quantity += 1;
+        increaseQuantity(quantity, product).then(()=>{
+          dispatch(getCartItems(_id));
+        });
+      }catch(error){
+        console.log(error)
+      }
+      
     } else {
-      dispatch(addToCart({ quantity, product, user }));
+      try{
+        dispatch(addToCart({ quantity, product, user })).then(()=> {
+          dispatch(getCartItems(_id));
+        });
+      }catch(error) {
+        console.log(error)
+      }
     }
+
   }
 
   return (
@@ -59,7 +74,7 @@ function ProductDetails() {
         <div className="product_details">
           <div className="details">
             <div className="main-img">
-              <img src={mainImage} alt="main-img" />
+              <img src={`${api}${mainImage}`} alt="main-img" />
               <div className="thumb" ref={thumbRef}>
                 {image.map((item, index) => {
                   return (
@@ -77,10 +92,10 @@ function ProductDetails() {
             </div>
             <div className="box">
               <div className="line">
-                <h2>{item.title}</h2>
+                <h2>{item.name}</h2>
                 <span>{item.price}</span>
                 <p>{item.description}</p>
-                <p>{item.content}</p>
+                <p> المخزون : {item.stock}</p>
                 <button className="btn btn-outline-primary" onClick={handleAddToCart}>اضف الى العربة</button>
               </div>
             </div>

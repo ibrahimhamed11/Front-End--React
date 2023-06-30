@@ -52,7 +52,7 @@ export default function BlogDetails() {
               <img src={userImage} alt="user_image" />
               <span>
                 <span className="username"> Ahmed Gad </span>
-                <span className="date"> june 17,2023 AT 1:28Am </span>
+                <span className="date"> {oneBlog.date} </span>
               </span>
             </div>
             <div className="blog-body_text">

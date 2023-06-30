@@ -74,9 +74,10 @@ export default function Navbar() {
                   >
                     <ion-icon name="person-circle-outline"></ion-icon> حسابي{" "}
                   </span>
-                  <span>
+                  {user.role !== "seller"? <span>
                     <ion-icon name="heart-outline"></ion-icon> قائمة الامنيات
-                  </span>
+                  </span> : ""}
+                 
                   <span
                     onClick={() => {
                       dispatch(logOut());
@@ -99,7 +100,7 @@ export default function Navbar() {
               </NavLink>
             </>
           )}
-          {isLoggedIn ? (
+          {isLoggedIn && user.role !== "seller" ? (
             <NavLink to="cart" className="links cart-button">
               عربة التسوق
               <span className="cart-icon-container">

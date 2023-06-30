@@ -17,11 +17,12 @@
 }
 .blog-info h2 {
   min-height: 30px;
-  max-height: 50px;
+  max-height: 35px;
   font-size: 20px;
   overflow: hidden;
   padding: 10px;
   color: #000;
+  -webkit-line-clamp: 3;
 }
 .blog-info p {
   color: #555;

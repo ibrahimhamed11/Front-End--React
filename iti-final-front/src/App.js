@@ -21,7 +21,7 @@ import { getCartItems } from "./Redux/Slices/ProductSlice";
 import { getUserData } from "./Redux/Slices/UserSlice";
 import BlogDetails from "./Pages/BlogDetails";
 import Todo from "./Components/Todo/Todo";
-
+import Babies from "./Components/Babies/Babies";
 
 
 
@@ -57,6 +57,7 @@ function App() {
           <Route path="edit" element={<EditInfo />} />
           <Route path="products" element={<SellerProducts />} />
           <Route path='todo' element={<Todo />}/>
+          <Route path='babies' element={<Babies />}/>
         </Route>
         <Route path="cart" element={<ShoppingCart />} />
         {/* <Route path="*"  element={<Navigate to="404" replace={true}/>}/> */}
