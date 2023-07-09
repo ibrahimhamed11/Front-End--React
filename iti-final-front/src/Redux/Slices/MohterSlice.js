@@ -16,9 +16,9 @@ export const addbaby = createAsyncThunk(
   }
 );
 
-export const getBaby = createAsyncThunk("mother/getBaby", async (_id) => {
+export const getBaby = createAsyncThunk("mother/getBaby", async () => {
   try {
-    let response = await axios.get(`${api}baby/${_id}`);
+    let response = await axios.get(`${api}baby/${id}`);
     return response.data
   } catch (error) {
     console.log(error);

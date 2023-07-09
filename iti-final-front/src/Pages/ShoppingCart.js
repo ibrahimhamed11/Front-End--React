@@ -177,14 +177,6 @@ export default function ShoppingCart() {
                     {/* Single item */}
                   </div>
                 </div>
-                {/* <div className="card mb-4">
-               <div className="card-body">
-                 <p>
-                   <strong>Expected shipping delivery</strong>
-                 </p>
-                 <p className="mb-0">12.10.2020 - 14.10.2020</p>
-               </div>
-             </div> */}
                 <div className="card mb-4 mb-lg-0">
                   <div className="card-body">
                     <p>
@@ -247,7 +239,8 @@ export default function ShoppingCart() {
 
                     <button
                       type="button"
-                      className="btn btn-outline-success btn-mm btn-block"
+                      className="btn btn-primary w-100"
+                      onClick={() => navigate("/checkout")}
                     >
                       الدفع
                     </button>
@@ -262,7 +255,7 @@ export default function ShoppingCart() {
           <img src={EmptyCart} className="empty-img" alt="empty cart" />
           <h3 className="empty-text">العربة فارغه</h3>
           <button
-            className="btn btn-outline-primary px-5 py-2"
+            className="btn btn-primary px-5 py-2"
             onClick={() => navigate("/products")}
           >
             تسوقي الان

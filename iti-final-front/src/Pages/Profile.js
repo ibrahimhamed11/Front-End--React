@@ -50,6 +50,12 @@ function Profile() {
                         اطفالي
                         </NavLink>
                         <NavLink
+                          to="/profile/myorders"
+                          className=" btn btn-outline-primary  btn-block  "
+                        >
+                       طلباتي
+                        </NavLink>
+                        <NavLink
                           to="/profile/todo"
                           className=" btn btn-outline-primary  btn-block  "
                         >

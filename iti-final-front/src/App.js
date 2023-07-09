@@ -14,7 +14,6 @@ import { useDispatch, useSelector } from "react-redux";
 import Profile from "./Pages/Profile";
 import ProfileInfo from "./Components/Profile/ProfileInfo";
 import SellerProducts from "./Components/SellerProducts/SellerProducts";
-// import { logIn } from "./Redux/Slices/UserSlice";
 import EditInfo from "./Components/EditInfo/EditInfo";
 import ShoppingCart from "./Pages/ShoppingCart";
 import { getCartItems } from "./Redux/Slices/ProductSlice";
@@ -22,6 +21,9 @@ import { getUserData } from "./Redux/Slices/UserSlice";
 import BlogDetails from "./Pages/BlogDetails";
 import Todo from "./Components/Todo/Todo";
 import Babies from "./Components/Babies/Babies";
+import CheckOut from "./Pages/CheckOut";
+import OrderDone from "./Components/ChecOut/OrderDone/OrderDone";
+import UserOrders from "./Components/userOrders/userOrders";
 
 
 
@@ -58,9 +60,12 @@ function App() {
           <Route path="products" element={<SellerProducts />} />
           <Route path='todo' element={<Todo />}/>
           <Route path='babies' element={<Babies />}/>
+          <Route  path="myorders" element={<UserOrders/>}/>
         </Route>
-        <Route path="cart" element={<ShoppingCart />} />
-        {/* <Route path="*"  element={<Navigate to="404" replace={true}/>}/> */}
+        <Route path="cart" element={<ShoppingCart />} /> 
+        <Route path="checkout" element={<CheckOut />} />
+        <Route path="orderDone" element={<OrderDone/>}/>
+        <Route path="*"  element={<Navigate to="404" replace={true}/>}/>
       </Routes>
       <Footer />
       

@@ -92,6 +92,7 @@ nav {
   color: #fff;
   display: inline-block;
   position: relative;
+  padding: 10px 0px;
 }
 
 .profile-droplist {
@@ -140,7 +141,7 @@ nav {
     text-align: right;
 }
 
-.profile-droplist span:hover {
+.profile-name span:hover {
     background-color: #fff;
 }
 

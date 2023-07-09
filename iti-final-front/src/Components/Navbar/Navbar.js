@@ -20,7 +20,6 @@ export default function Navbar() {
   };
 
   const totalItems = cartItems.reduce((count, product) => {
-    console.log(count);
     return count + product.quantity;
   }, 0);
 
@@ -74,10 +73,14 @@ export default function Navbar() {
                   >
                     <ion-icon name="person-circle-outline"></ion-icon> حسابي{" "}
                   </span>
-                  {user.role !== "seller"? <span>
-                    <ion-icon name="heart-outline"></ion-icon> قائمة الامنيات
-                  </span> : ""}
-                 
+                  {user.role !== "seller" ? (
+                    <span>
+                      <ion-icon name="heart-outline"></ion-icon> قائمة الامنيات
+                    </span>
+                  ) : (
+                    ""
+                  )}
+
                   <span
                     onClick={() => {
                       dispatch(logOut());

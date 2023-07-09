@@ -26,7 +26,7 @@ export default function AddBaby() {
           weight: values.weight,
           height: values.height,
           headSize: values.headSize,
-          age: values.age,
+          birthDate: values.birthDate,
           temperature: values.temperature,
         }
         dispatch(addbaby({babyInfo})).then(()=>{

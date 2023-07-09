@@ -6,6 +6,7 @@ import BlogSlice from "./Slices/BlogSlice";
 import TodoSlice from "./Slices/TodoSlice";
 import CommentSlice from "./Slices/CommentSlice";
 import MotherSlice from "./Slices/MohterSlice";
+import OrderSlice from "./Slices/OrderSlice";
 
 
 
@@ -17,6 +18,7 @@ export const Store = configureStore({
         BlogSlice,
         TodoSlice,
         CommentSlice,
-        MotherSlice
+        MotherSlice,
+        OrderSlice
     }
 });
