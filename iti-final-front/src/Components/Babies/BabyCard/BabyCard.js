@@ -19,6 +19,16 @@ export default function BabyCard() {
     }
   }
 
+  async function handlVaccine(vacId,babyId) {
+    try {
+      console.log(vacId,babyId)
+      let res = await axios.patch(`${api}${userId}/${babyId}`,{vacId})
+      console.log(res)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <Accordion className="my-5 mx-5">
       {baby &&
@@ -27,7 +37,7 @@ export default function BabyCard() {
             <Accordion.Item
               eventKey={index}
               onClick={() => {
-                updateVac(single._id);
+                updateVac(single._id)
               }}
             >
               <Accordion.Header>{single.name}</Accordion.Header>
@@ -54,7 +64,7 @@ export default function BabyCard() {
                       </th>
                     </tr>
                     <tr>
-                      <th colSpan={2}>نوع التطعيم</th>
+                      <th colSpan={2}>اسم التطعيم</th>
                       <th>الحاله</th>
                       <th>التحكم</th>
                     </tr>
@@ -62,13 +72,30 @@ export default function BabyCard() {
                       return (
                         <tr className={vaccine.checked ? "table-info" : ""}>
                           <td colSpan={2}>{vaccine.name}</td>
-                          <td>{!vaccine.status ? "لم يتم" : ""}</td>
+                          <td>{!vaccine.status ? "لم يتم" : "تم التطعيم"}</td>
                           <td>
-                            {!vaccine.status && (
-                              <button className="btn btn-success">تم</button>
-                            )}
+                            {!vaccine.status ? 
+                              <button
+                                className="btn btn-success"
+                                onClick={() => {
+                                  handlVaccine(vaccine._id,single._id).then(()=>{
+                                    updateVac(single._id)
+                                  })
+                                }}
+                              >
+                                تم
+                              </button>:    <button disabled
+                                className="btn btn-success"
+                                onClick={() => {
+                                  handlVaccine(vaccine._id,single._id).then(()=>{
+                                    updateVac(single._id)
+                                  })
+                                }}
+                              >
+                                تم
+                              </button>
+                            }
                           </td>
-
                         </tr>
                       );
                     })}
